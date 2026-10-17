@@ -1,0 +1,1055 @@
+{
+  "config": {
+    "normalReward": {
+      "type": "points",
+      "amount": 6
+    },
+    "streakRewards": []
+  },
+  "usersData": {
+    "超级管理员": {
+      "signData": {
+        "lastSignDate": "2026-09-26",
+        "streak": 26,
+        "signRecords": [
+          {
+            "timestamp": 1784171849.765519
+          },
+          {
+            "timestamp": 1784257924.149105
+          },
+          {
+            "timestamp": 1784512246.852136
+          },
+          {
+            "timestamp": 1785544832.820071
+          },
+          {
+            "timestamp": 1787368600.042658
+          },
+          {
+            "timestamp": 1787882564.10858
+          },
+          {
+            "timestamp": 1787987946.567933
+          },
+          {
+            "timestamp": 1788130073.350014
+          },
+          {
+            "timestamp": 1788216754.273127
+          },
+          {
+            "timestamp": 1788693762.645588
+          },
+          {
+            "timestamp": 1788784451.454022
+          },
+          {
+            "timestamp": 1789560815.298946
+          }
+        ],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 121191442,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      },
+      "daily_tasks": {},
+      "daily_tasks_date": "2026-10-07"
+    },
+    "迪迪7": {
+      "signData": {
+        "lastSignDate": "2026-09-26",
+        "streak": 26,
+        "signRecords": [
+          {
+            "timestamp": 1786011648.70271
+          },
+          {
+            "timestamp": 1787804040.134834
+          },
+          {
+            "timestamp": 1788784687.460728
+          }
+        ],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 6551775,
+        "regular": 0,
+        "super": 25,
+        "extra_space_packs": []
+      },
+      "daily_tasks": {
+        "task6": {
+          "completed": true,
+          "claimed": true
+        },
+        "task5": {
+          "completed": true,
+          "claimed": true
+        },
+        "task4": {
+          "completed": true,
+          "claimed": true
+        },
+        "task3": {
+          "completed": true,
+          "claimed": true
+        },
+        "task2": {
+          "completed": true,
+          "claimed": true
+        },
+        "task1": {
+          "completed": true,
+          "claimed": true
+        }
+      },
+      "daily_tasks_date": "2026-09-07"
+    },
+    "YY202509_袁崇理": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_吴老师": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_陈祈至": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 1,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_迟子昂": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_高维崧": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_耿琮奇": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_蒋骁瀚": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_李荣潮": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_廖驭辰": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_吕一铭": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_马承一": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_马于我": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_毛嘉禹": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_孙清涵": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_汪启辰": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_王辰宇": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_王中宽": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 1527,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_王子恒": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_魏宜壮": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_张尧星": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_张子厚": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_张梓熙": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_赵远卓": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_郑凯泽": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_陈思诺": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_范洲": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_韩妙颐": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_胡宸源": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 1527,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_金宸汐": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_李晗宁": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_李姝瑶": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_孟翘楚": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_石奕涵": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_宋思涵": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_孙雨萱": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_王卢茗": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_王芮彤": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_王歆瑞": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_杨雨涵": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_尹吉想": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_张钰可": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_张子和": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_朱怀瑾": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_祝莞心": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "YY202509_邹若宸": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_管理员": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_北京首钢": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 7500,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_北京控股": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_福建晋江文旅": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_广东东阳光": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_长白山恩都里": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_辽宁本钢": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_南京天之蓝": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_青岛崂山啤酒": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_山东高速": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_山西汾酒": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_上海久事": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_深圳马可波罗": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_广州朗肽海本": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_四川丰谷酒业": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_江苏肯尼亚": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_天津先行者": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_新疆伊力特": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_浙江浙商证券": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_浙江稠州金租": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "CBA12345_宁波町渥": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 0,
+        "extra_space_packs": []
+      }
+    },
+    "个人荣耀币汇报": {
+      "signData": {
+        "lastSignDate": null,
+        "streak": 0,
+        "signRecords": [],
+        "lastDeductionDate": "2026-10-07"
+      },
+      "rewards": {
+        "points": 0,
+        "regular": 0,
+        "super": 97,
+        "extra_space_packs": []
+      },
+      "daily_tasks": {},
+      "daily_tasks_date": "2026-09-01"
+    }
+  }
+}

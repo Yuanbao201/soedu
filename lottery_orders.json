@@ -1,0 +1,788 @@
+{
+  "迪迪7": [
+    {
+      "id": "2b8fd93eca79",
+      "game_id": 3,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": false,
+        "loss": false
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:09:03.438353"
+    },
+    {
+      "id": "096e392ca504",
+      "game_id": 3,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": true,
+        "loss": false
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T10:09:09.900584"
+    },
+    {
+      "id": "b741270ab847",
+      "game_id": 3,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": true,
+        "loss": true
+      },
+      "multiplier": 50,
+      "bet_count": 2,
+      "price": 200,
+      "created_at": "2026-07-15T10:09:25.792927"
+    },
+    {
+      "id": "fcc801f44bff",
+      "game_id": 3,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜平": true,
+        "平胜": true,
+        "平平": true,
+        "负平": true
+      },
+      "multiplier": 25,
+      "bet_count": 4,
+      "price": 200,
+      "created_at": "2026-07-15T10:09:41.669120"
+    },
+    {
+      "id": "919b2d030961",
+      "game_id": 3,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 1,
+        "away": 1
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:09:49.369503"
+    },
+    {
+      "id": "1b7a9e101601",
+      "game_id": 3,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 2,
+        "away": 2
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:09:55.901001"
+    },
+    {
+      "id": "ba305c1be8bc",
+      "game_id": 3,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 2,
+        "away": 1
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:10:04.210393"
+    },
+    {
+      "id": "af4669391f67",
+      "game_id": 3,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 1,
+        "away": 0
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:10:20.017424"
+    },
+    {
+      "id": "c56aeefd3cf0",
+      "game_id": 3,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 2
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:11:37.190801"
+    },
+    {
+      "id": "d12e41e734cd",
+      "game_id": 3,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 3
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:11:40.624562"
+    },
+    {
+      "id": "3fb785f68fa4",
+      "game_id": 3,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 4
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:11:46.951629"
+    },
+    {
+      "id": "364a3731f7dd",
+      "game_id": 3,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 5
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T10:11:58.838030"
+    },
+    {
+      "id": "320f118a58ac",
+      "game_id": 4,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": true,
+        "loss": true
+      },
+      "multiplier": 50,
+      "bet_count": 2,
+      "price": 200,
+      "created_at": "2026-07-15T16:30:46.732023"
+    },
+    {
+      "id": "182bd62d67cf",
+      "game_id": 4,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": false,
+        "loss": false
+      },
+      "multiplier": 5,
+      "bet_count": 1,
+      "price": 10,
+      "created_at": "2026-07-15T16:30:49.588249"
+    },
+    {
+      "id": "c6b9c04ff8a3",
+      "game_id": 4,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": true,
+        "loss": true
+      },
+      "multiplier": 50,
+      "bet_count": 2,
+      "price": 200,
+      "created_at": "2026-07-15T16:31:46.270009"
+    },
+    {
+      "id": "162c77ff35de",
+      "game_id": 4,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": false,
+        "loss": false
+      },
+      "multiplier": 10,
+      "bet_count": 1,
+      "price": 20,
+      "created_at": "2026-07-15T16:31:50.967169"
+    },
+    {
+      "id": "78bb81da1841",
+      "game_id": 4,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜胜": true,
+        "平胜": true,
+        "平平": true,
+        "负平": true
+      },
+      "multiplier": 50,
+      "bet_count": 4,
+      "price": 400,
+      "created_at": "2026-07-15T16:32:15.935981"
+    },
+    {
+      "id": "cc85dc21e824",
+      "game_id": 4,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜平": true,
+        "平负": true,
+        "负胜": true
+      },
+      "multiplier": 5,
+      "bet_count": 3,
+      "price": 30,
+      "created_at": "2026-07-15T16:32:54.572692"
+    },
+    {
+      "id": "93b0a89b5b0f",
+      "game_id": 4,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "负负": true
+      },
+      "multiplier": 5,
+      "bet_count": 1,
+      "price": 10,
+      "created_at": "2026-07-15T16:33:22.261242"
+    },
+    {
+      "id": "6bc9467f1a30",
+      "game_id": 4,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜负": true
+      },
+      "multiplier": 15,
+      "bet_count": 1,
+      "price": 30,
+      "created_at": "2026-07-15T16:33:36.674773"
+    },
+    {
+      "id": "818528f93487",
+      "game_id": 4,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 1,
+        "away": 1
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:33:45.956465"
+    },
+    {
+      "id": "26d46f472191",
+      "game_id": 4,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 1,
+        "away": 2
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:33:53.961490"
+    },
+    {
+      "id": "40c332d3d675",
+      "game_id": 4,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 2,
+        "away": 2
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:34:01.872963"
+    },
+    {
+      "id": "839beb5e7bd6",
+      "game_id": 4,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 2,
+        "away": 3
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:34:10.829898"
+    },
+    {
+      "id": "78994db53928",
+      "game_id": 4,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 0,
+        "away": 1
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:34:21.433226"
+    },
+    {
+      "id": "5be05991e358",
+      "game_id": 4,
+      "play_type": "比分",
+      "bet_option": {
+        "home": 3,
+        "away": 3
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:34:32.271019"
+    },
+    {
+      "id": "bffcc4d54f2e",
+      "game_id": 4,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 1
+      },
+      "multiplier": 25,
+      "bet_count": 1,
+      "price": 50,
+      "created_at": "2026-07-15T16:34:46.557957"
+    },
+    {
+      "id": "dc9626327cf5",
+      "game_id": 4,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 2
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:34:53.659634"
+    },
+    {
+      "id": "949bb009c7d9",
+      "game_id": 4,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 3
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:34:57.901832"
+    },
+    {
+      "id": "d2a212c0eb5c",
+      "game_id": 4,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 4
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:35:01.518259"
+    },
+    {
+      "id": "abde244e6d88",
+      "game_id": 4,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals": 5
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-15T16:35:08.151112"
+    },
+    {
+      "id": "2545693968ca",
+      "game_id": 5,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": true,
+        "loss": false
+      },
+      "multiplier": 100,
+      "bet_count": 2,
+      "price": 400,
+      "created_at": "2026-07-17T10:07:30.519127"
+    },
+    {
+      "id": "0f6a45572e6e",
+      "game_id": 5,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": false,
+        "loss": true
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-17T10:07:39.375026"
+    },
+    {
+      "id": "5d5770356b84",
+      "game_id": 5,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": false,
+        "loss": false
+      },
+      "multiplier": 20,
+      "bet_count": 1,
+      "price": 40,
+      "created_at": "2026-07-17T10:07:56.901287"
+    },
+    {
+      "id": "3cb16e152d1d",
+      "game_id": 5,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": true,
+        "loss": true
+      },
+      "multiplier": 50,
+      "bet_count": 2,
+      "price": 200,
+      "created_at": "2026-07-17T10:08:03.206841"
+    },
+    {
+      "id": "5648a870182a",
+      "game_id": 5,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜胜": true,
+        "平平": true
+      },
+      "multiplier": 50,
+      "bet_count": 2,
+      "price": 200,
+      "created_at": "2026-07-17T10:08:39.426004"
+    },
+    {
+      "id": "6c771c5caa87",
+      "game_id": 5,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜平": true,
+        "平胜": true,
+        "负平": true
+      },
+      "multiplier": 20,
+      "bet_count": 3,
+      "price": 120,
+      "created_at": "2026-07-17T10:08:58.462765"
+    },
+    {
+      "id": "2b8732ec3be7",
+      "game_id": 5,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜负": true,
+        "平负": true,
+        "负胜": true,
+        "负负": true
+      },
+      "multiplier": 10,
+      "bet_count": 4,
+      "price": 80,
+      "created_at": "2026-07-17T10:09:59.608545"
+    },
+    {
+      "id": "093780c4925e",
+      "game_id": 5,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "1:0",
+          "0:1",
+          "1:2"
+        ]
+      },
+      "multiplier": 10,
+      "bet_count": 3,
+      "price": 60,
+      "created_at": "2026-07-17T10:35:10.891613"
+    },
+    {
+      "id": "52d564aa2350",
+      "game_id": 5,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "2:0"
+        ]
+      },
+      "multiplier": 30,
+      "bet_count": 1,
+      "price": 60,
+      "created_at": "2026-07-17T10:35:26.203477"
+    },
+    {
+      "id": "f6dd3d0f4e5d",
+      "game_id": 5,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "3:1",
+          "3:2",
+          "0:2"
+        ]
+      },
+      "multiplier": 20,
+      "bet_count": 3,
+      "price": 120,
+      "created_at": "2026-07-17T10:36:00.799857"
+    },
+    {
+      "id": "3d86bc22dc33",
+      "game_id": 5,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "2:1",
+          "1:1",
+          "2:2"
+        ]
+      },
+      "multiplier": 50,
+      "bet_count": 3,
+      "price": 300,
+      "created_at": "2026-07-17T10:36:24.667854"
+    },
+    {
+      "id": "fd0587a388a5",
+      "game_id": 5,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals_list": [
+          "0球",
+          "6球"
+        ]
+      },
+      "multiplier": 10,
+      "bet_count": 2,
+      "price": 40,
+      "created_at": "2026-07-17T10:36:59.205680"
+    },
+    {
+      "id": "35a09d0691a6",
+      "game_id": 5,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals_list": [
+          "1球"
+        ]
+      },
+      "multiplier": 20,
+      "bet_count": 1,
+      "price": 40,
+      "created_at": "2026-07-17T10:37:05.150751"
+    },
+    {
+      "id": "76dfecf9be53",
+      "game_id": 5,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals_list": [
+          "5球"
+        ]
+      },
+      "multiplier": 30,
+      "bet_count": 1,
+      "price": 60,
+      "created_at": "2026-07-17T10:37:11.667137"
+    },
+    {
+      "id": "1c2f58706afc",
+      "game_id": 5,
+      "play_type": "总进球数",
+      "bet_option": {
+        "goals_list": [
+          "2球",
+          "3球",
+          "4球"
+        ]
+      },
+      "multiplier": 50,
+      "bet_count": 3,
+      "price": 300,
+      "created_at": "2026-07-17T10:37:18.043619"
+    },
+    {
+      "id": "2b4e0f001a59",
+      "game_id": 6,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": true,
+        "loss": false
+      },
+      "multiplier": 100,
+      "bet_count": 2,
+      "price": 400,
+      "created_at": "2026-07-17T16:48:58.394637"
+    },
+    {
+      "id": "47e684cd919b",
+      "game_id": 6,
+      "play_type": "胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": false,
+        "loss": true
+      },
+      "multiplier": 50,
+      "bet_count": 1,
+      "price": 100,
+      "created_at": "2026-07-17T16:49:06.226741"
+    },
+    {
+      "id": "b2abc160bd16",
+      "game_id": 6,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": true,
+        "draw": false,
+        "loss": false
+      },
+      "multiplier": 10,
+      "bet_count": 1,
+      "price": 20,
+      "created_at": "2026-07-17T16:49:16.373634"
+    },
+    {
+      "id": "e9d0aea60902",
+      "game_id": 6,
+      "play_type": "让球胜平负",
+      "bet_option": {
+        "win": false,
+        "draw": true,
+        "loss": true
+      },
+      "multiplier": 100,
+      "bet_count": 2,
+      "price": 400,
+      "created_at": "2026-07-17T16:49:22.996992"
+    },
+    {
+      "id": "53dfd2450b8c",
+      "game_id": 6,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜胜": true,
+        "负胜": true,
+        "负负": true
+      },
+      "multiplier": 20,
+      "bet_count": 3,
+      "price": 120,
+      "created_at": "2026-07-17T16:49:51.870796"
+    },
+    {
+      "id": "4462bf7b3813",
+      "game_id": 6,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜平": true,
+        "平胜": true,
+        "平平": true,
+        "平负": true
+      },
+      "multiplier": 50,
+      "bet_count": 4,
+      "price": 400,
+      "created_at": "2026-07-17T16:50:11.157945"
+    },
+    {
+      "id": "617b5cd94ee8",
+      "game_id": 6,
+      "play_type": "半场胜平负",
+      "bet_option": {
+        "胜负": true,
+        "负平": true
+      },
+      "multiplier": 10,
+      "bet_count": 2,
+      "price": 40,
+      "created_at": "2026-07-17T16:50:22.380685"
+    },
+    {
+      "id": "b7a0967ca4fa",
+      "game_id": 6,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "1:0",
+          "2:0",
+          "1:1",
+          "0:1",
+          "0:2"
+        ]
+      },
+      "multiplier": 20,
+      "bet_count": 5,
+      "price": 200,
+      "created_at": "2026-07-17T16:51:15.075212"
+    },
+    {
+      "id": "db433844c10e",
+      "game_id": 6,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "2:1",
+          "1:2"
+        ]
+      },
+      "multiplier": 30,
+      "bet_count": 2,
+      "price": 120,
+      "created_at": "2026-07-17T16:51:31.538720"
+    },
+    {
+      "id": "af6aaa25522f",
+      "game_id": 6,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "3:1",
+          "3:2",
+          "2:2"
+        ]
+      },
+      "multiplier": 50,
+      "bet_count": 3,
+      "price": 300,
+      "created_at": "2026-07-17T16:51:50.612390"
+    },
+    {
+      "id": "fa5f0661005d",
+      "game_id": 6,
+      "play_type": "比分",
+      "bet_option": {
+        "scores": [
+          "3:3"
+        ]
+      },
+      "multiplier": 10,
+      "bet_count": 1,
+      "price": 20,
+      "created_at": "2026-07-17T16:51:56.907684"
+    }
+  ]
+}

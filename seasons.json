@@ -1,0 +1,235 @@
+[
+  {
+    "id": 1,
+    "name": "CBA夏季联赛",
+    "has_regular": true,
+    "has_playoffs": false,
+    "participating_teams": [
+      "CBA12345_北京首钢",
+      "CBA12345_福建晋江文旅",
+      "CBA12345_辽宁本钢",
+      "CBA12345_青岛崂山啤酒",
+      "CBA12345_山东高速",
+      "CBA12345_山西汾酒",
+      "CBA12345_天津先行者",
+      "CBA12345_浙江浙商证券"
+    ],
+    "team_see_all": false,
+    "other_see_all": true,
+    "participant_type": "member",
+    "status": "进行中",
+    "regular_matches": [
+      {
+        "id": 1,
+        "date": "2026-09-02",
+        "team1": "CBA12345_辽宁本钢",
+        "team2": "CBA12345_福建晋江文旅",
+        "score1": 80,
+        "score2": 76
+      },
+      {
+        "id": 2,
+        "date": "2026-09-02",
+        "team1": "CBA12345_山西汾酒",
+        "team2": "CBA12345_天津先行者",
+        "score1": 100,
+        "score2": 104
+      },
+      {
+        "id": 3,
+        "date": "2026-09-02",
+        "team1": "CBA12345_北京首钢",
+        "team2": "CBA12345_山东高速",
+        "score1": 85,
+        "score2": 82
+      },
+      {
+        "id": 4,
+        "date": "2026-09-02",
+        "team1": "CBA12345_青岛崂山啤酒",
+        "team2": "CBA12345_浙江浙商证券",
+        "score1": 84,
+        "score2": 59
+      },
+      {
+        "id": 5,
+        "date": "2026-09-03",
+        "team1": "CBA12345_山东高速",
+        "team2": "CBA12345_辽宁本钢",
+        "score1": 95,
+        "score2": 72
+      },
+      {
+        "id": 6,
+        "date": "2026-09-03",
+        "team1": "CBA12345_浙江浙商证券",
+        "team2": "CBA12345_山西汾酒",
+        "score1": 69,
+        "score2": 92
+      },
+      {
+        "id": 7,
+        "date": "2026-09-03",
+        "team1": "CBA12345_福建晋江文旅",
+        "team2": "CBA12345_北京首钢",
+        "score1": 69,
+        "score2": 76
+      },
+      {
+        "id": 8,
+        "date": "2026-09-03",
+        "team1": "CBA12345_天津先行者",
+        "team2": "CBA12345_青岛崂山啤酒",
+        "score1": 74,
+        "score2": 85
+      },
+      {
+        "id": 9,
+        "date": "2026-09-04",
+        "team1": "CBA12345_山东高速",
+        "team2": "CBA12345_福建晋江文旅",
+        "score1": 82,
+        "score2": 75
+      },
+      {
+        "id": 10,
+        "date": "2026-09-04",
+        "team1": "CBA12345_浙江浙商证券",
+        "team2": "CBA12345_天津先行者",
+        "score1": 84,
+        "score2": 78
+      },
+      {
+        "id": 11,
+        "date": "2026-09-04",
+        "team1": "CBA12345_北京首钢",
+        "team2": "CBA12345_辽宁本钢",
+        "score1": 75,
+        "score2": 67
+      },
+      {
+        "id": 12,
+        "date": "2026-09-04",
+        "team1": "CBA12345_青岛崂山啤酒",
+        "team2": "CBA12345_山西汾酒",
+        "score1": 89,
+        "score2": 86
+      },
+      {
+        "id": 13,
+        "date": "2026-09-05",
+        "team1": "CBA12345_辽宁本钢",
+        "team2": "CBA12345_浙江浙商证券",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 80,
+        "score2": 72
+      },
+      {
+        "id": 14,
+        "date": "2026-09-05",
+        "team1": "CBA12345_天津先行者",
+        "team2": "CBA12345_福建晋江文旅",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 76,
+        "score2": 82
+      },
+      {
+        "id": 15,
+        "date": "2026-09-05",
+        "team1": "CBA12345_北京首钢",
+        "team2": "CBA12345_山西汾酒",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 85,
+        "score2": 77
+      },
+      {
+        "id": 16,
+        "date": "2026-09-05",
+        "team1": "CBA12345_青岛崂山啤酒",
+        "team2": "CBA12345_山东高速",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 72,
+        "score2": 66
+      },
+      {
+        "id": 17,
+        "date": "2026-09-06",
+        "team1": "CBA12345_天津先行者",
+        "team2": "CBA12345_浙江浙商证券",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 83,
+        "score2": 75
+      },
+      {
+        "id": 18,
+        "date": "2026-09-06",
+        "team1": "CBA12345_福建晋江文旅",
+        "team2": "CBA12345_辽宁本钢",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 66,
+        "score2": 72
+      },
+      {
+        "id": 19,
+        "date": "2026-09-06",
+        "team1": "CBA12345_山东高速",
+        "team2": "CBA12345_山西汾酒",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 86,
+        "score2": 80
+      },
+      {
+        "id": 20,
+        "date": "2026-09-06",
+        "team1": "CBA12345_青岛崂山啤酒",
+        "team2": "CBA12345_北京首钢",
+        "round": "决赛",
+        "game": "第1场",
+        "score1": 78,
+        "score2": 83
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "CBA2026-27赛季",
+    "has_regular": true,
+    "has_playoffs": true,
+    "participating_teams": [
+      "CBA12345_北京首钢",
+      "CBA12345_北京控股",
+      "CBA12345_福建晋江文旅",
+      "CBA12345_广东东阳光",
+      "CBA12345_长白山恩都里",
+      "CBA12345_辽宁本钢",
+      "CBA12345_南京天之蓝",
+      "CBA12345_青岛崂山啤酒",
+      "CBA12345_山东高速",
+      "CBA12345_山西汾酒",
+      "CBA12345_上海久事",
+      "CBA12345_深圳马可波罗",
+      "CBA12345_广州朗肽海本",
+      "CBA12345_四川丰谷酒业",
+      "CBA12345_江苏肯尼亚",
+      "CBA12345_天津先行者",
+      "CBA12345_新疆伊力特",
+      "CBA12345_浙江浙商证券",
+      "CBA12345_浙江稠州金租",
+      "CBA12345_宁波町渥"
+    ],
+    "team_see_all": false,
+    "other_see_all": true,
+    "participant_type": "member",
+    "status": "进行中",
+    "regular_matches": [],
+    "playoff_matches": [],
+    "playoff_bracket": {}
+  }
+]

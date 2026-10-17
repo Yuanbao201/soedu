@@ -1,0 +1,827 @@
+{
+  "超级管理员": {
+    "password": "admin123456",
+    "role": "admin",
+    "info": {
+      "name": "元宝0609",
+      "email": "ycl23246780@163.com",
+      "phone": "13020064666"
+    },
+    "user_type": "personal",
+    "avatar": null
+  },
+  "迪迪7": {
+    "password": "20160412",
+    "role": "student",
+    "info": {
+      "name": "迪迪7",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "personal"
+  },
+  "YY202509_吴老师": {
+    "password": "",
+    "role": "company_admin",
+    "info": {
+      "name": "吴老师",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "admin"
+  },
+  "个人荣耀币汇报": {
+    "password": "ryb123",
+    "role": "company_admin",
+    "info": {
+      "name": "荣耀币",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "admin"
+  },
+  "YY202509_陈祈至": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "陈祈至",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_迟子昂": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "迟子昂",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_高维崧": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "高维崧",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_耿琮奇": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "耿琮奇",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_蒋骁瀚": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "蒋骁瀚",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_李荣潮": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "李荣潮",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_廖驭辰": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "廖驭辰",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_吕一铭": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "吕一铭",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_马承一": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "马承一",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_马于我": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "马于我",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_毛嘉禹": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "毛嘉禹",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_孙清涵": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "孙清涵",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_汪启辰": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "汪启辰",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_王辰宇": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "王辰宇",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_王中宽": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "王中宽",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_王子恒": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "王子恒",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_魏宜壮": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "魏宜壮",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_袁崇理": {
+    "password": "ycl20131125",
+    "role": "company_member",
+    "info": {
+      "name": "袁崇理",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_张尧星": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "张尧星",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_张子厚": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "张子厚",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_张梓熙": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "张梓熙",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_赵远卓": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "赵远卓",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_郑凯泽": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "郑凯泽",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_陈思诺": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "陈思诺",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_范洲": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "范洲",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_韩妙颐": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "韩妙颐",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_胡宸源": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "胡宸源",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_金宸汐": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "金宸汐",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_李晗宁": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "李晗宁",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_李姝瑶": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "李姝瑶",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_孟翘楚": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "孟翘楚",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_石奕涵": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "石奕涵",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_宋思涵": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "宋思涵",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_孙雨萱": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "孙雨萱",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_王卢茗": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "王卢茗",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_王芮彤": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "王芮彤",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_王歆瑞": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "王歆瑞",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_杨雨涵": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "杨雨涵",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_尹吉想": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "尹吉想",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_张钰可": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "张钰可",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_张子和": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "张子和",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_朱怀瑾": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "朱怀瑾",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_祝莞心": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "祝莞心",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "YY202509_邹若宸": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "邹若宸",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "YY202509",
+    "company_role": "member"
+  },
+  "CBA12345_管理员": {
+    "password": "",
+    "role": "company_admin",
+    "info": {
+      "name": "中国职业男子篮球联赛",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "admin"
+  },
+  "CBA12345_北京首钢": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "北京首钢",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_北京控股": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "北京控股",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_福建晋江文旅": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "福建晋江文旅",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_广东东阳光": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "广东东阳光",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_长白山恩都里": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "长白山恩都里",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_辽宁本钢": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "辽宁本钢",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_南京天之蓝": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "南京天之蓝",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_青岛崂山啤酒": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "青岛崂山啤酒",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_山东高速": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "山东高速",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_山西汾酒": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "山西汾酒",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_上海久事": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "上海久事",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_深圳马可波罗": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "深圳马可波罗",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_广州朗肽海本": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "广州朗肽海本",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_四川丰谷酒业": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "四川丰谷酒业",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_江苏肯尼亚": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "江苏肯尼亚",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_天津先行者": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "天津先行者",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_新疆伊力特": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "新疆伊力特",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_浙江浙商证券": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "浙江浙商证券",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_浙江稠州金租": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "浙江稠州金租",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  },
+  "CBA12345_宁波町渥": {
+    "password": "",
+    "role": "company_member",
+    "info": {
+      "name": "宁波町渥",
+      "email": "",
+      "phone": ""
+    },
+    "user_type": "company",
+    "company_id": "CBA12345",
+    "company_role": "member"
+  }
+}

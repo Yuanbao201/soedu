@@ -1,0 +1,27 @@
+{
+  "homeName": "主队",
+  "awayName": "客队",
+  "homePlayers": [],
+  "awayPlayers": [],
+  "gameState": {
+    "scores": {
+      "A": 0,
+      "B": 0
+    },
+    "fouls": {
+      "A": 0,
+      "B": 0
+    },
+    "pauses": {
+      "A": 0,
+      "B": 0
+    },
+    "currentQuarter": 1,
+    "timeRemaining": 600,
+    "shotClockRemaining": 24.0,
+    "breakTimeRemaining": 0,
+    "isBreak": false,
+    "isPlaying": false
+  },
+  "hasSetup": false
+}

@@ -1,0 +1,229 @@
+{
+  "超级管理员": [
+    {
+      "id": "7195c38baad8",
+      "timestamp": "2026-08-05 11:40:07",
+      "difficulty": 1,
+      "score": 163,
+      "change": null
+    },
+    {
+      "id": "fa66f2a1390a",
+      "timestamp": "2026-08-05 11:41:26",
+      "difficulty": 1,
+      "score": 172,
+      "change": 9
+    },
+    {
+      "id": "8f5e9b10ab37",
+      "timestamp": "2026-08-05 11:43:01",
+      "difficulty": 6,
+      "score": 98,
+      "change": null
+    },
+    {
+      "id": "e994ae11baed",
+      "timestamp": "2026-08-05 11:44:07",
+      "difficulty": 6,
+      "score": 94,
+      "change": -4
+    },
+    {
+      "id": "3e47b2c53d40",
+      "timestamp": "2026-08-05 11:45:15",
+      "difficulty": 2,
+      "score": 107,
+      "change": null
+    },
+    {
+      "id": "4fde564829cb",
+      "timestamp": "2026-08-05 11:53:35",
+      "difficulty": 1,
+      "score": 161,
+      "change": 1
+    },
+    {
+      "id": "4e9c09866be4",
+      "timestamp": "2026-08-05 11:55:55",
+      "difficulty": 6,
+      "score": 124,
+      "change": 30
+    },
+    {
+      "id": "eb176d2ca8d6",
+      "timestamp": "2026-08-05 12:04:15",
+      "difficulty": 6,
+      "score": 131
+    },
+    {
+      "id": "f7fc3bb2f5ec",
+      "timestamp": "2026-08-05 12:48:21",
+      "difficulty": 6,
+      "score": 139
+    },
+    {
+      "id": "89d571ee3d45",
+      "timestamp": "2026-08-05 12:49:44",
+      "difficulty": 1,
+      "score": 178
+    },
+    {
+      "id": "70fd06bdb7fb",
+      "timestamp": "2026-08-06 19:49:05",
+      "difficulty": 7,
+      "score": 105
+    },
+    {
+      "id": "88d4f6b0fa75",
+      "timestamp": "2026-08-06 19:52:10",
+      "difficulty": 9,
+      "score": 112
+    },
+    {
+      "id": "55d33316f594",
+      "timestamp": "2026-08-06 19:54:18",
+      "difficulty": 10,
+      "score": 118
+    },
+    {
+      "id": "f2ab019d999b",
+      "timestamp": "2026-08-06 21:31:47",
+      "difficulty": 6,
+      "score": 160
+    },
+    {
+      "id": "20943a9f5075",
+      "timestamp": "2026-08-06 21:33:04",
+      "difficulty": 9,
+      "score": 132
+    },
+    {
+      "id": "63fe6f240b4a",
+      "timestamp": "2026-08-06 21:34:20",
+      "difficulty": 10,
+      "score": 114
+    },
+    {
+      "id": "53b25ed8ba5e",
+      "timestamp": "2026-08-06 21:39:06",
+      "difficulty": 6,
+      "score": 142
+    },
+    {
+      "id": "1153a01e9c49",
+      "timestamp": "2026-08-06 21:41:31",
+      "difficulty": 6,
+      "score": 159
+    },
+    {
+      "id": "a7903f4db59d",
+      "timestamp": "2026-08-06 21:52:31",
+      "difficulty": 10,
+      "score": 144
+    },
+    {
+      "id": "80fb6a4dbdc0",
+      "timestamp": "2026-08-06 21:54:00",
+      "difficulty": 6,
+      "score": 142
+    },
+    {
+      "id": "8d7461802d0a",
+      "timestamp": "2026-08-06 21:55:38",
+      "difficulty": 1,
+      "score": 184
+    },
+    {
+      "id": "a10cb11256a8",
+      "timestamp": "2026-08-06 22:00:04",
+      "difficulty": 6,
+      "score": 140
+    },
+    {
+      "id": "f5d9958bf40f",
+      "timestamp": "2026-08-06 22:01:45",
+      "difficulty": 6,
+      "score": 139
+    },
+    {
+      "id": "e33ff37dd981",
+      "timestamp": "2026-08-06 22:03:02",
+      "difficulty": 6,
+      "score": 140
+    },
+    {
+      "id": "a469cdfdd20c",
+      "timestamp": "2026-08-28 11:45:52",
+      "difficulty": 6,
+      "score": 167
+    },
+    {
+      "id": "09fa7c4e24ca",
+      "timestamp": "2026-08-28 11:49:25",
+      "difficulty": 6,
+      "score": 162
+    },
+    {
+      "id": "8d61e4ecf930",
+      "timestamp": "2026-08-30 15:07:31",
+      "difficulty": 6,
+      "score": 165
+    },
+    {
+      "id": "31af08b75dba",
+      "timestamp": "2026-09-10 21:56:23",
+      "difficulty": 6,
+      "score": 165
+    },
+    {
+      "id": "7403aacf5a98",
+      "timestamp": "2026-09-12 14:13:30",
+      "difficulty": 6,
+      "score": 165
+    },
+    {
+      "id": "55b85dbf180c",
+      "timestamp": "2026-09-12 14:26:10",
+      "difficulty": 6,
+      "score": 157
+    },
+    {
+      "id": "2839e0c8d278",
+      "timestamp": "2026-09-16 20:12:14",
+      "difficulty": 6,
+      "score": 163
+    },
+    {
+      "id": "dfaf47b23b25",
+      "timestamp": "2026-10-07 11:56:19",
+      "difficulty": 6,
+      "score": 169
+    }
+  ],
+  "迪迪7": [
+    {
+      "id": "4ed655f44296",
+      "timestamp": "2026-08-06 18:22:47",
+      "difficulty": 1,
+      "score": 77
+    },
+    {
+      "id": "2dc5ca3c3e23",
+      "timestamp": "2026-08-06 18:23:59",
+      "difficulty": 1,
+      "score": 76
+    },
+    {
+      "id": "dca1400f3d88",
+      "timestamp": "2026-08-06 18:25:03",
+      "difficulty": 6,
+      "score": 20
+    },
+    {
+      "id": "e6221ec2ec1f",
+      "timestamp": "2026-08-06 18:26:45",
+      "difficulty": 6,
+      "score": 13
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "products": [
+    {
+      "id": "regular_week",
+      "name": "7天体验卡",
+      "level": 1,
+      "original_price": 7.8,
+      "price": 2.3,
+      "days": 7
+    },
+    {
+      "id": "regular_month",
+      "name": "连续包月",
+      "level": 1,
+      "original_price": 23,
+      "price": 6.9,
+      "days": 31
+    },
+    {
+      "id": "regular_season",
+      "name": "连续包季",
+      "level": 1,
+      "original_price": 65,
+      "price": 19.5,
+      "days": 92
+    },
+    {
+      "id": "super_week",
+      "name": "7天体验卡",
+      "level": 2,
+      "original_price": 13.5,
+      "price": 4,
+      "days": 7
+    },
+    {
+      "id": "super_month",
+      "name": "连续包月",
+      "level": 2,
+      "original_price": 49,
+      "price": 14,
+      "days": 31
+    },
+    {
+      "id": "super_season",
+      "name": "连续包季",
+      "level": 2,
+      "original_price": 139,
+      "price": 41,
+      "days": 92
+    },
+    {
+        "id": "extra_100gb_month",
+        "name": "100GB 1个月",
+        "level": 3,
+        "original_price": 8.8,
+        "price": 2.6,
+        "extra_space_gb": 100,
+        "days": 31
+    },
+    {
+        "id": "extra_200gb_season",
+        "name": "200GB 3个月",
+        "level": 3,
+        "original_price": 49,
+        "price": 14,
+        "extra_space_gb": 200,
+        "days": 31
+    },
+    {
+        "id": "extra_500gb_season",
+        "name": "500GB 3个月",
+        "level": 3,
+        "original_price": 119,
+        "price": 35,
+        "extra_space_gb": 500,
+        "days": 92
+    },
+    {
+        "id": "extra_1tb_6_months",
+        "name": "1TB 6个月",
+        "level": 3,
+        "original_price": 476,
+        "price": 142,
+        "extra_space_gb": 1024,
+        "days": 182
+    },
+    {
+        "id": "extra_1tb_year",
+        "name": "1TB 1年",
+        "level": 3,
+        "original_price": 939,
+        "price": 279,
+        "extra_space_gb": 1024,
+        "days": 365
+    },
+    {
+        "id": "extra_2tb_year",
+        "name": "2TB 1年",
+        "level": 3,
+        "original_price": 1869,
+        "price": 559,
+        "extra_space_gb": 2048,
+        "days": 365
+    }
+  ]
+}

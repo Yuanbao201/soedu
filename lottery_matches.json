@@ -1,0 +1,130 @@
+[
+  {
+    "season": "世界杯",
+    "team1": "法国",
+    "team2": "西班牙",
+    "time": "2026-07-15T03:00",
+    "play_types": [
+      {
+        "type": "胜平负",
+        "params": {}
+      },
+      {
+        "type": "让球胜平负",
+        "params": {
+          "handicap": -1
+        }
+      },
+      {
+        "type": "半场胜平负",
+        "params": {}
+      },
+      {
+        "type": "比分",
+        "params": {}
+      },
+      {
+        "type": "总进球数",
+        "params": {}
+      }
+    ],
+    "id": 3,
+    "ended": true
+  },
+  {
+    "season": "世界杯",
+    "team1": "英格兰",
+    "team2": "阿根廷",
+    "time": "2026-07-16T03:00",
+    "play_types": [
+      {
+        "type": "胜平负",
+        "params": {}
+      },
+      {
+        "type": "让球胜平负",
+        "params": {
+          "handicap": -1
+        }
+      },
+      {
+        "type": "半场胜平负",
+        "params": {}
+      },
+      {
+        "type": "比分",
+        "params": {}
+      },
+      {
+        "type": "总进球数",
+        "params": {}
+      }
+    ],
+    "id": 4,
+    "ended": true
+  },
+  {
+    "season": "世界杯",
+    "team1": "法国",
+    "team2": "英格兰",
+    "time": "2026-07-19T05:00",
+    "play_types": [
+      {
+        "type": "胜平负",
+        "params": {}
+      },
+      {
+        "type": "让球胜平负",
+        "params": {
+          "handicap": -1
+        }
+      },
+      {
+        "type": "半场胜平负",
+        "params": {}
+      },
+      {
+        "type": "比分",
+        "params": {}
+      },
+      {
+        "type": "总进球数",
+        "params": {}
+      }
+    ],
+    "id": 5,
+    "ended": true
+  },
+  {
+    "season": "世界杯",
+    "team1": "西班牙",
+    "team2": "阿根廷",
+    "time": "2026-07-20T03:00",
+    "play_types": [
+      {
+        "type": "胜平负",
+        "params": {}
+      },
+      {
+        "type": "让球胜平负",
+        "params": {
+          "handicap": -1
+        }
+      },
+      {
+        "type": "半场胜平负",
+        "params": {}
+      },
+      {
+        "type": "比分",
+        "params": {}
+      },
+      {
+        "type": "总进球数",
+        "params": {}
+      }
+    ],
+    "id": 6,
+    "ended": true
+  }
+]
