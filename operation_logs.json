@@ -1324,5 +1324,11 @@
     "username": "system",
     "operation": "启动",
     "status": "成功"
+  },
+  {
+    "time": "2026-10-17 21:17:25",
+    "username": "DEV-CCB209A7E220197F",
+    "operation": "授权",
+    "status": "成功"
   }
 ]
