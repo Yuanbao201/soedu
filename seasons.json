@@ -196,40 +196,5 @@
         "score2": 83
       }
     ]
-  },
-  {
-    "id": 2,
-    "name": "CBA2026-27赛季",
-    "has_regular": true,
-    "has_playoffs": true,
-    "participating_teams": [
-      "CBA12345_北京首钢",
-      "CBA12345_北京控股",
-      "CBA12345_福建晋江文旅",
-      "CBA12345_广东东阳光",
-      "CBA12345_长白山恩都里",
-      "CBA12345_辽宁本钢",
-      "CBA12345_南京天之蓝",
-      "CBA12345_青岛崂山啤酒",
-      "CBA12345_山东高速",
-      "CBA12345_山西汾酒",
-      "CBA12345_上海久事",
-      "CBA12345_深圳马可波罗",
-      "CBA12345_广州朗肽海本",
-      "CBA12345_四川丰谷酒业",
-      "CBA12345_江苏肯尼亚",
-      "CBA12345_天津先行者",
-      "CBA12345_新疆伊力特",
-      "CBA12345_浙江浙商证券",
-      "CBA12345_浙江稠州金租",
-      "CBA12345_宁波町渥"
-    ],
-    "team_see_all": false,
-    "other_see_all": true,
-    "participant_type": "member",
-    "status": "进行中",
-    "regular_matches": [],
-    "playoff_matches": [],
-    "playoff_bracket": {}
   }
 ]
