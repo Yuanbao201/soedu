@@ -9,8 +9,8 @@
   "usersData": {
     "超级管理员": {
       "signData": {
-        "lastSignDate": "2026-09-26",
-        "streak": 26,
+        "lastSignDate": "2026-10-18",
+        "streak": 57,
         "signRecords": [
           {
             "timestamp": 1784171849.765519
@@ -62,8 +62,8 @@
     },
     "迪迪7": {
       "signData": {
-        "lastSignDate": "2026-09-26",
-        "streak": 26,
+        "lastSignDate": "2026-10-18",
+        "streak": 57,
         "signRecords": [
           {
             "timestamp": 1786011648.70271
@@ -78,7 +78,7 @@
         "lastDeductionDate": "2026-10-18"
       },
       "rewards": {
-        "points": 6551775,
+        "points": 655177,
         "regular": 0,
         "super": 14,
         "extra_space_packs": []
