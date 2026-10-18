@@ -1,1 +1,32 @@
-{}
+{
+  "users": {
+    "超级管理员": [
+      {
+        "chat_id": "超级管理员_迪迪7",
+        "type": "people",
+        "name": "迪迪7",
+        "target": "迪迪7",
+        "isPinned": false,
+        "lastMessageTime": 1792298508.082255,
+        "lastMessage": "",
+        "unreadCount": 0
+      }
+    ],
+    "迪迪7": [
+      {
+        "chat_id": "超级管理员_迪迪7",
+        "type": "people",
+        "name": "元宝0609",
+        "target": "超级管理员",
+        "isPinned": false,
+        "lastMessageTime": 1792298508.082255,
+        "lastMessage": "",
+        "unreadCount": 0
+      }
+    ]
+  },
+  "messages": {
+    "超级管理员_迪迪7": []
+  },
+  "groups": {}
+}
