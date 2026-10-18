@@ -1480,5 +1480,11 @@
     "username": "迪迪7",
     "operation": "访问",
     "status": "成功"
+  },
+  {
+    "time": "2026-10-18 13:26:23",
+    "username": "超级管理员",
+    "operation": "访问",
+    "status": "成功"
   }
 ]
