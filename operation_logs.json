@@ -1498,5 +1498,11 @@
     "username": "system",
     "operation": "启动",
     "status": "成功"
+  },
+  {
+    "time": "2026-10-19 10:52:39",
+    "username": "DEV-6C3206FF54473111",
+    "operation": "授权",
+    "status": "成功"
   }
 ]
