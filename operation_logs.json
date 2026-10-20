@@ -1612,5 +1612,11 @@
     "username": "system",
     "operation": "启动",
     "status": "成功"
+  },
+  {
+    "time": "2026-10-20 18:44:58",
+    "username": "DEV-85D71C212DEFB935",
+    "operation": "授权",
+    "status": "成功"
   }
 ]
