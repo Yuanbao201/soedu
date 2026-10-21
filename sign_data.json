@@ -75,12 +75,12 @@
             "timestamp": 1788784687.460728
           }
         ],
-        "lastDeductionDate": "2026-10-20"
+        "lastDeductionDate": "2026-10-21"
       },
       "rewards": {
         "points": 655177,
         "regular": 0,
-        "super": 12,
+        "super": 11,
         "extra_space_packs": []
       },
       "daily_tasks": {
@@ -1040,12 +1040,12 @@
         "lastSignDate": null,
         "streak": 0,
         "signRecords": [],
-        "lastDeductionDate": "2026-10-20"
+        "lastDeductionDate": "2026-10-21"
       },
       "rewards": {
         "points": 0,
         "regular": 0,
-        "super": 84,
+        "super": 83,
         "extra_space_packs": []
       },
       "daily_tasks": {},
