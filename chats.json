@@ -6,9 +6,9 @@
         "type": "people",
         "name": "迪迪7",
         "target": "迪迪7",
-        "isPinned": false,
-        "lastMessageTime": 1792298508.082255,
-        "lastMessage": "",
+        "isPinned": true,
+        "lastMessageTime": 0,
+        "lastMessage": "暂无消息",
         "unreadCount": 0
       }
     ],
