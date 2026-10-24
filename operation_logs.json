@@ -1912,5 +1912,11 @@
     "username": "未知用户",
     "operation": "访问",
     "status": "未知"
+  },
+  {
+    "time": "2026-10-24 20:40:40",
+    "username": "超级管理员",
+    "operation": "登录",
+    "status": "成功"
   }
 ]
