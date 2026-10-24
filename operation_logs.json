@@ -1714,5 +1714,11 @@
     "username": "system",
     "operation": "启动",
     "status": "成功"
+  },
+  {
+    "time": "2026-10-24 11:08:36",
+    "username": "超级管理员",
+    "operation": "访问",
+    "status": "成功"
   }
 ]
