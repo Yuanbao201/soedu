@@ -25,5 +25,30 @@
     "dead": {
       "oasis-monster-5": 1
     }
+  },
+  "超级管理员": {
+    "v": 2,
+    "day": 1,
+    "region": "oasis",
+    "hp": 100,
+    "food": 100,
+    "water": 100,
+    "stamina": 32,
+    "px": 24,
+    "pz": 24,
+    "yaw": 0,
+    "inv": {
+      "wood": 0,
+      "stone": 0,
+      "core": 0,
+      "berry": 0,
+      "water": 0
+    },
+    "lit": {
+      "oasis": false,
+      "desert": false,
+      "frost": false
+    },
+    "dead": {}
   }
 }
