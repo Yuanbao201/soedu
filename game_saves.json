@@ -28,21 +28,21 @@
   },
   "迪迪7": {
     "v": 2,
-    "day": 2,
+    "day": 4,
     "region": "oasis",
     "hp": 96,
-    "food": 74.92188399999993,
-    "water": 72.01563600000007,
-    "stamina": 26,
-    "px": 24,
-    "pz": 26.449980000000018,
-    "yaw": 0.9448399999999944,
+    "food": 34.417863999999774,
+    "water": 87.84405600000002,
+    "stamina": 32,
+    "px": 45.46829400639736,
+    "pz": 29.936378817923462,
+    "yaw": -0.9360000000000469,
     "inv": {
-      "wood": 0,
-      "stone": 0,
+      "wood": 8,
+      "stone": 2,
       "core": 1,
-      "berry": 0,
-      "water": 34
+      "berry": 6,
+      "water": 65
     },
     "lit": {
       "oasis": false,
@@ -50,7 +50,18 @@
       "frost": false
     },
     "dead": {
-      "oasis-monster-5": 1
+      "oasis-monster-5": 1,
+      "oasis-berry-26": 1,
+      "oasis-tree-108": 1,
+      "oasis-berry-37": 1,
+      "oasis-berry-4": 1,
+      "oasis-tree-103": 1,
+      "oasis-tree-68": 1,
+      "oasis-berry-16": 1,
+      "oasis-berry-30": 1,
+      "oasis-rock-8": 1,
+      "oasis-tree-63": 1,
+      "oasis-berry-51": 1
     }
   }
 }
