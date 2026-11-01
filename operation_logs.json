@@ -2566,5 +2566,11 @@
     "username": "超级管理员",
     "operation": "访问",
     "status": "成功"
+  },
+  {
+    "time": "2026-11-01 19:46:12",
+    "username": "system",
+    "operation": "启动",
+    "status": "成功"
   }
 ]
