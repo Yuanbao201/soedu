@@ -78,9 +78,9 @@
         "lastDeductionDate": "2026-11-01"
       },
       "rewards": {
-        "points": 655177,
+        "points": 653777,
         "regular": 0,
-        "super": 0,
+        "super": 31,
         "extra_space_packs": []
       },
       "daily_tasks": {
