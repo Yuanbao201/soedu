@@ -2140,5 +2140,11 @@
     "username": "超级管理员",
     "operation": "访问",
     "status": "成功"
+  },
+  {
+    "time": "2026-11-01 14:22:43",
+    "username": "DEV-1715E6E10AE7BD57",
+    "operation": "授权",
+    "status": "成功"
   }
 ]
