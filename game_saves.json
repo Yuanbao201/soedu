@@ -3,40 +3,25 @@
     "v": 2,
     "day": 1,
     "region": "oasis",
-    "hp": 84,
-    "food": 92.40733503999923,
-    "water": 90.72007616000133,
-    "stamina": 1,
-    "px": 13.123128000579625,
-    "pz": 36.32288794084945,
-    "yaw": -2.8439999999999985,
+    "hp": 100,
+    "food": 98.9150298399997,
+    "water": 98.67392536000028,
+    "stamina": 28,
+    "px": 24,
+    "pz": 26.42476000000001,
+    "yaw": 0,
     "inv": {
-      "wood": 10,
+      "wood": 0,
       "stone": 0,
-      "core": 1,
-      "berry": 8,
-      "water": 2
+      "core": 0,
+      "berry": 0,
+      "water": 4
     },
     "lit": {
       "oasis": false,
       "desert": false,
       "frost": false
     },
-    "dead": {
-      "oasis-monster-5": 1,
-      "oasis-berry-26": 1,
-      "oasis-berry-33": 1,
-      "oasis-berry-35": 1,
-      "oasis-tree-89": 1,
-      "oasis-berry-56": 1,
-      "oasis-berry-38": 1,
-      "oasis-berry-27": 1,
-      "oasis-tree-34": 1,
-      "oasis-berry-45": 1,
-      "oasis-tree-95": 1,
-      "oasis-tree-79": 1,
-      "oasis-tree-11": 1,
-      "oasis-berry-64": 1
-    }
+    "dead": {}
   }
 }
