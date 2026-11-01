@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>网络探秘 · 小互联网仿真器</title>
+        <style>
+            :root {
+                --ink: #1A2E4B;
+                --ink-2: #2E4A73;
+                --bg: #F0F2F5;
+                --paper: #FFFFFF;
+                --accent: #E8720C;
+                --accent-soft: #FDEBD7;
+                --ok: #2E9E5B;
+                --ok-soft: #E3F4EA;
+                --bad: #D64545;
+                --bad-soft: #FBE7E7;
+                --muted: #7A8699;
+                --line: #D8DEE7;
+                --grid: rgba(26,46,75,.07);
+            }
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            html, body { height: 100%; }
+            body {
+                font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+                background: var(--bg);
+                color: var(--ink);
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                overflow: hidden;
+            }
+            
+            header {
+                background: var(--ink);
+                color: #fff;
+                padding: 10px 20px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                flex-wrap: wrap;
+                z-index: 5;
+            }
+            header .logo { font-size: 18px; font-weight: 700; letter-spacing: .5px; }
+            header .logo small { font-weight: 400; opacity: .75; font-size: 12px; margin-left: 8px; }
+            .hd-group { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-wrap: wrap; }
+            .hd-group .sep { width: 1px; height: 22px; background: rgba(255,255,255,.25); margin: 0 6px; }
+            .btn {
+                border: none; border-radius: 8px; padding: 7px 14px;
+                font-size: 13px; font-weight: 600; cursor: pointer;
+                font-family: inherit; transition: all .12s ease;
+            }
+            .btn-preset { background: rgba(255,255,255,.14); color: #fff; }
+            .btn-preset:hover { background: rgba(255,255,255,.26); }
+            .btn-reset { background: rgba(255,255,255,.14); color: #fff; }
+            .btn-reset:hover { background: rgba(255,255,255,.26); }
+            .mode-switch { display: flex; gap: 4px; background: rgba(255,255,255,.12); border-radius: 8px; padding: 3px; }
+            .mode-btn { border: none; background: transparent; color: rgba(255,255,255,.8); font-size: 13px; font-weight: 600; padding: 5px 14px; border-radius: 6px; cursor: pointer; font-family: inherit; }
+            .mode-btn.active { background: var(--accent); color: #fff; }
+            .btn-demo { background: var(--accent); color: #fff; font-weight: 700; display: none; }
+            .btn-demo:hover { background: #d3630a; }
+            body.demo-mode .btn-demo { display: inline-block; }
+            body.demo-mode .btn-edit { display: none; }
+            
+            .drag-ghost {
+                position: fixed; pointer-events: none; z-index: 999;
+                background: var(--paper); border: 2px solid var(--accent);
+                border-radius: 10px; padding: 6px 10px;
+                display: flex; align-items: center; gap: 6px;
+                font-size: 12px; font-weight: 700; color: var(--ink);
+                box-shadow: 0 6px 16px rgba(26,46,75,.25); opacity: .92;
+            }
+            .drag-ghost svg { width: 26px; height: 26px; }
+            
+            /* 框选矩形 */
+            .selection-box {
+                position: absolute; z-index: 7;
+                border: 1.5px dashed var(--accent);
+                background: rgba(232,114,12,.08);
+                pointer-events: none; display: none;
+            }
+            
+            /* 介质选择菜单 */
+            .kind-menu {
+                position: absolute; z-index: 20;
+                background: var(--paper); border: 2px solid var(--ink);
+                border-radius: 12px; padding: 10px;
+                box-shadow: 0 8px 24px rgba(26,46,75,.3);
+                display: none;
+            }
+            .kind-menu.show { display: block; }
+            .kind-menu .km-title { font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 8px; text-align: center; }
+            .kind-menu .km-options { display: flex; gap: 8px; }
+            .kind-menu .km-opt {
+                border: 2px solid var(--line); background: var(--bg);
+                border-radius: 8px; padding: 8px 12px; cursor: pointer;
+                font-size: 12px; font-weight: 600; font-family: inherit;
+                display: flex; flex-direction: column; align-items: center; gap: 3px;
+                transition: all .12s;
+            }
+            .kind-menu .km-opt:hover { border-color: var(--accent); background: var(--accent-soft); }
+            .kind-menu .km-opt .km-line { width: 30px; height: 3px; border-radius: 2px; }
+            
+            /* 接口标签 */
+            .port-label {
+                position: absolute; z-index: 3;
+                background: var(--ink); color: #fff;
+                font-size: 10px; font-weight: 700;
+                padding: 2px 6px; border-radius: 4px;
+                pointer-events: none; white-space: nowrap;
+                transform: translate(-50%, -50%);
+            }
+            
+            /* 右键菜单 */
+            .ctx-menu {
+                position: absolute; z-index: 30;
+                background: var(--paper); border: 2px solid var(--ink);
+                border-radius: 10px; padding: 6px;
+                box-shadow: 0 8px 24px rgba(26,46,75,.3);
+                display: none; min-width: 120px;
+            }
+            .ctx-menu.show { display: block; }
+            .ctx-menu .ctx-item {
+                padding: 8px 14px; border-radius: 6px;
+                font-size: 13px; font-weight: 600; cursor: pointer;
+                display: flex; align-items: center; gap: 6px;
+                color: var(--ink);
+            }
+            .ctx-menu .ctx-item:hover { background: var(--accent-soft); }
+            .ctx-menu .ctx-item.danger { color: var(--bad); }
+            .ctx-menu .ctx-item.danger:hover { background: var(--bad-soft); }
+            .ctx-menu .ctx-item svg { width: 16px; height: 16px; }
+            
+            /* 点赞动画 */
+            .like-popup {
+                position: absolute; z-index: 11;
+                font-size: 28px; pointer-events: none;
+                animation: likeFloat 1.5s ease-out forwards;
+            }
+            @keyframes likeFloat {
+                0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+                30% { opacity: 1; transform: translate(-50%, -80%) scale(1.3); }
+                100% { opacity: 0; transform: translate(-50%, -150%) scale(1); }
+            }
+            
+            .steps {
+                background: var(--paper); border-bottom: 1px solid var(--line);
+                padding: 10px 24px; display: none;
+                justify-content: center; gap: 8px; z-index: 4;
+            }
+            body.demo-mode .steps { display: flex; }
+            .step {
+                display: flex; align-items: center; gap: 6px;
+                font-size: 12px; color: var(--muted);
+                padding: 6px 10px; border-radius: 999px;
+                border: 2px solid var(--line); background: var(--bg);
+                transition: all .2s ease;
+            }
+            .step .n {
+                width: 18px; height: 18px; border-radius: 50%;
+                background: var(--muted); color: #fff;
+                font-size: 11px; font-weight: 700;
+                display: flex; align-items: center; justify-content: center;
+            }
+            .step.active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+            .step.active .n { background: var(--accent); }
+            .step.done { border-color: var(--ok); background: var(--ok-soft); color: var(--ok); }
+            .step.done .n { background: var(--ok); }
+            
+            .main { flex: 1; display: flex; min-height: 0; }
+            
+            .panel {
+                width: 184px; background: var(--paper);
+                border-right: 1px solid var(--line);
+                padding: 14px 12px; display: flex;
+                flex-direction: column; gap: 10px;
+                overflow-y: auto; z-index: 4;
+            }
+            .panel h3 {
+                font-size: 12px; color: var(--muted); font-weight: 700;
+                letter-spacing: 1px; margin-bottom: 2px;
+            }
+            .tool-row { display: flex; gap: 6px; flex-wrap: wrap; }
+            .tool {
+                flex: 1 1 40%; border: 2px solid var(--line);
+                background: var(--paper); border-radius: 10px;
+                padding: 8px 4px; cursor: pointer;
+                display: flex; flex-direction: column;
+                align-items: center; gap: 3px;
+                font-size: 11px; color: var(--ink); font-weight: 600;
+                transition: all .12s ease; font-family: inherit;
+            }
+            .tool svg { width: 20px; height: 20px; }
+            .tool:hover { border-color: var(--accent); }
+            .tool.active { border-color: var(--accent); background: var(--accent-soft); }
+            .pool-hint { font-size: 11px; color: var(--muted); line-height: 1.5; }
+            .device-item {
+                border: 2px solid var(--line); background: var(--paper);
+                border-radius: 10px; padding: 8px 6px; cursor: grab;
+                display: flex; align-items: center; gap: 8px;
+                transition: all .12s ease; user-select: none;
+            }
+            .device-item:hover { border-color: var(--accent); transform: translateX(2px); }
+            .device-item:active { cursor: grabbing; }
+            .device-item .d-ico { width: 30px; height: 30px; flex: 0 0 30px; pointer-events: none; }
+            .device-item .d-info { display: flex; flex-direction: column; pointer-events: none; }
+            .device-item .d-name { font-size: 13px; font-weight: 700; }
+            .device-item .d-desc { font-size: 10px; color: var(--muted); line-height: 1.3; }
+            
+            .stage-wrap { flex: 1; position: relative; min-width: 0; }
+            .stage {
+                position: absolute; inset: 0;
+                background-color: #FAFBFD;
+                background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+                background-size: 36px 36px;
+                overflow: hidden; cursor: default;
+            }
+            .stage.drag-over { box-shadow: inset 0 0 0 3px var(--accent); }
+            .zone {
+                position: absolute; border: 2px dashed rgba(26,46,75,.25);
+                border-radius: 16px; pointer-events: none; z-index: 0;
+            }
+            
+            svg.links {
+                position: absolute; inset: 0; width: 100%; height: 100%;
+                pointer-events: none; z-index: 1;
+            }
+            svg.links line {
+                stroke: var(--ink-2); stroke-width: 3;
+                stroke-linecap: round; transition: stroke .2s ease;
+                pointer-events: stroke; cursor: pointer;
+            }
+            svg.links line.hit-area {
+                stroke: transparent; stroke-width: 14;
+                pointer-events: stroke; cursor: pointer;
+            }
+            svg.links text {
+                pointer-events: auto; cursor: pointer;
+            }
+            svg.links line.ok { stroke: var(--ok); }
+            svg.links line.bad { stroke: var(--bad); }
+            svg.links line.selected { stroke: var(--accent); stroke-width: 4; }
+            svg.links line.wifi { stroke-dasharray: 7 5; }
+            svg.links line.fiber { stroke-width: 4; stroke: var(--accent); }
+            
+            .dev {
+                position: absolute; width: 92px; min-height: 72px;
+                transform: translate(-50%, -50%);
+                background: var(--paper); border: 2px solid var(--ink-2);
+                border-radius: 12px; display: flex; flex-direction: column;
+                align-items: center; justify-content: center; gap: 2px;
+                cursor: grab; user-select: none;
+                box-shadow: 0 2px 6px rgba(26,46,75,.12);
+                transition: border-color .15s ease, box-shadow .15s ease;
+                z-index: 2; padding: 6px 4px;
+            }
+            .dev:hover { box-shadow: 0 4px 12px rgba(26,46,75,.2); }
+            .dev .d-ico { width: 34px; height: 34px; pointer-events: none; }
+            .dev .d-name { font-size: 11px; font-weight: 700; text-align: center; line-height: 1.2; pointer-events: none; }
+            .dev .d-ip { font-size: 9px; color: var(--muted); text-align: center; line-height: 1.2; pointer-events: none; }
+            .dev .d-addr { font-size: 11px; color: var(--accent); font-weight: 700; text-align: center; line-height: 1.2; pointer-events: none; font-family: "SF Mono", Consolas, monospace; }
+            .dev .edit-pencil {
+                display: inline-flex; align-items: center; justify-content: center;
+                width: 12px; height: 12px; margin-left: 3px;
+                cursor: pointer; z-index: 5; pointer-events: auto;
+                vertical-align: middle; flex: 0 0 12px;
+                opacity: .4; transition: opacity .15s;
+            }
+            .dev .edit-pencil svg { width: 12px; height: 12px; color: var(--muted); display: block; }
+            .dev .edit-pencil:hover { opacity: 1; }
+            .dev.selected { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); z-index: 3; }
+            .dev.flash-ok { border-color: var(--ok); box-shadow: 0 0 0 4px rgba(46,158,91,.35); }
+            .dev.flash-bad { border-color: var(--bad); box-shadow: 0 0 0 4px rgba(214,69,69,.35); }
+            .dev.internet { border-style: dashed; background: var(--ink); }
+            .dev.internet .d-name { color: #fff; }
+            .dev.internet .d-ip { color: rgba(255,255,255,.65); }
+            .dev.dragging { cursor: grabbing; z-index: 6; }
+            .dev.server { border-color: var(--ok); }
+            
+            .dev.dev-zone {
+                width: 340px; height: 260px;
+                border: 2.5px dashed rgba(26,46,75,.55);
+                background: rgba(26,46,75,.04); border-radius: 16px;
+                cursor: move; box-shadow: none; padding: 0; gap: 0; z-index: 1;
+            }
+            .dev.dev-zone:hover { box-shadow: 0 0 0 3px rgba(232,114,12,.18); }
+            .dev.dev-zone.selected { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(232,114,12,.22); }
+            .dev.dev-zone .zone-tag {
+                position: absolute; top: 14px; left: 16px;
+                background: var(--ink); color: #fff;
+                font-size: 12px; font-weight: 700;
+                padding: 3px 14px; border-radius: 999px;
+                letter-spacing: 1px; pointer-events: none;
+                max-width: calc(100% - 32px); white-space: nowrap;
+                overflow: hidden; text-overflow: ellipsis;
+            }
+            .dev.dev-zone .zone-size {
+                position: absolute; bottom: 8px; right: 12px;
+                font-size: 10px; color: var(--muted); pointer-events: none;
+            }
+            .dev.dev-zone .resize-handle {
+                position: absolute; right: -9px; bottom: -9px;
+                width: 20px; height: 20px; background: var(--accent);
+                border: 2px solid #fff; border-radius: 6px;
+                cursor: nwse-resize; box-shadow: 0 2px 6px rgba(232,114,12,.4); z-index: 3;
+            }
+            .dev.dev-zone .resize-handle::after {
+                content: ''; position: absolute; right: 4px; bottom: 4px;
+                width: 7px; height: 7px;
+                border-right: 2.5px solid #fff; border-bottom: 2.5px solid #fff;
+                border-bottom-right-radius: 1px;
+            }
+            
+            .bubble {
+                position: absolute; z-index: 9;
+                background: var(--ink); color: #fff;
+                font-size: 13px; line-height: 1.5;
+                padding: 10px 14px; border-radius: 10px;
+                max-width: 300px; pointer-events: none;
+                opacity: 0; transform: translateY(6px);
+                transition: opacity .2s ease, transform .2s ease;
+                box-shadow: 0 6px 16px rgba(26,46,75,.25);
+            }
+            .bubble.show { opacity: 1; transform: translateY(0); }
+            .bubble::after {
+                content: ''; position: absolute; top: 100%; left: var(--ax, 50%);
+                transform: translateX(-50%);
+                border: 7px solid transparent; border-top-color: var(--ink);
+            }
+            .bubble.below::after {
+                top: auto; bottom: 100%;
+                border-top-color: transparent; border-bottom-color: var(--ink);
+            }
+            .bubble b { color: #FFB27A; }
+            
+            .packet-card {
+                position: absolute; z-index: 8;
+                background: var(--accent-soft); border: 2px solid var(--accent);
+                border-radius: 10px; padding: 8px 12px;
+                font-size: 12px; line-height: 1.6; color: var(--ink);
+                pointer-events: none; opacity: 0; transform: scale(.92);
+                transition: opacity .2s ease, transform .2s ease;
+                box-shadow: 0 4px 12px rgba(232,114,12,.25);
+            }
+            .packet-card.show { opacity: 1; transform: scale(1); }
+            .packet-card .p-label { font-size: 11px; color: var(--accent); font-weight: 700; letter-spacing: 1px; }
+            .packet-card .p-ip { font-weight: 700; }
+            
+            .site-panel {
+                position: absolute; z-index: 10; left: 50%; top: 50%;
+                transform: translate(-50%, -50%);
+                background: var(--paper); border: 2px solid var(--ink);
+                border-radius: 16px; padding: 20px 24px;
+                box-shadow: 0 12px 40px rgba(26,46,75,.3);
+                text-align: center; display: none;
+            }
+            .site-panel.show { display: block; }
+            .site-panel h3 { font-size: 17px; margin-bottom: 4px; }
+            .site-panel .sp-sub { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+            .site-list { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+            .site-btn {
+                border: 2px solid var(--line); background: var(--bg);
+                border-radius: 12px; padding: 12px 18px; cursor: pointer;
+                display: flex; flex-direction: column; align-items: center; gap: 3px;
+                font-family: inherit; transition: all .12s ease;
+            }
+            .site-btn:hover { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px); }
+            .site-btn .s-name { font-size: 15px; font-weight: 700; color: var(--ink); }
+            .site-btn .s-url { font-size: 12px; color: var(--muted); }
+            .site-close {
+                margin-top: 12px; border: none; background: none;
+                color: var(--muted); font-size: 13px; cursor: pointer; font-family: inherit;
+            }
+            .site-close:hover { color: var(--ink); }
+            
+            .proc-note {
+                position: absolute; z-index: 9; left: 50%; top: 16px;
+                transform: translateX(-50%);
+                background: var(--paper); border: 2px solid var(--accent);
+                color: var(--ink); font-size: 14px; font-weight: 600;
+                padding: 8px 18px; border-radius: 999px;
+                box-shadow: 0 4px 14px rgba(232,114,12,.2);
+                display: none; white-space: nowrap; max-width: 90%;
+            }
+            .proc-note.show { display: block; }
+            .proc-note b { color: var(--accent); }
+            
+            .rt-panel {
+                position: absolute; z-index: 9;
+                background: var(--paper); border: 2px solid var(--ink);
+                border-radius: 12px; padding: 10px 12px;
+                box-shadow: 0 8px 24px rgba(26,46,75,.25);
+                display: none; font-size: 12px;
+                width: 380px; max-width: calc(100% - 24px);
+            }
+            .rt-panel.show { display: block; }
+            .rt-panel h4 { font-size: 13px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+            .rt-panel h4 .rt-ico { color: var(--accent); }
+            .rt-table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+            .rt-table th, .rt-table td { border: 1px solid var(--line); padding: 5px 6px; text-align: left; font-size: 11.5px; word-break: break-all; }
+            .rt-table th:first-child { width: 56%; }
+            .rt-table th:nth-child(2) { width: 26%; }
+            .rt-table th { background: var(--ink); color: #fff; font-weight: 600; }
+            .rt-table tr.match td { background: var(--ok-soft); color: var(--ok); font-weight: 700; }
+            .rt-panel .rt-note { margin-top: 6px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+            
+            .webpage {
+                position: absolute; z-index: 12; width: 300px;
+                background: var(--paper); border: 2px solid var(--ink);
+                border-radius: 12px; box-shadow: 0 12px 40px rgba(26,46,75,.35);
+                overflow: hidden; display: none;
+            }
+            .webpage.show { display: block; }
+            .webpage .wp-bar {
+                background: var(--bg); border-bottom: 1px solid var(--line);
+                padding: 8px 12px; font-size: 12px; color: var(--muted);
+                display: flex; align-items: center; gap: 8px;
+            }
+            .webpage .wp-bar .wp-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+            .webpage .wp-bar .wp-url { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 3px 10px; font-size: 11px; flex: 1; }
+            .webpage .wp-body { padding: 18px 20px; text-align: center; }
+            .webpage .wp-logo { font-size: 26px; font-weight: 800; color: #4E6EF2; letter-spacing: 2px; margin-bottom: 12px; }
+            .webpage .wp-search { display: flex; border: 2px solid #4E6EF2; border-radius: 8px; overflow: hidden; }
+            .webpage .wp-search input { flex: 1; border: none; outline: none; padding: 8px 10px; font-size: 13px; font-family: inherit; }
+            .webpage .wp-search button { border: none; background: #4E6EF2; color: #fff; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit; }
+            .webpage .wp-tip { margin-top: 10px; font-size: 12px; color: var(--muted); }
+            
+            footer {
+                background: var(--paper); border-top: 1px solid var(--line);
+                padding: 8px 20px; display: flex; align-items: center;
+                gap: 12px; min-height: 44px; z-index: 5;
+            }
+            .status { font-size: 13px; color: var(--muted); line-height: 1.5; flex: 1; }
+            .status b { color: var(--ink); }
+            .toast {
+                margin-left: auto; border-radius: 10px; padding: 8px 16px;
+                font-size: 13px; font-weight: 600; max-width: 60%;
+                text-align: center; line-height: 1.5; display: none;
+            }
+            .toast.show { display: block; }
+            .toast.ok { background: var(--ok-soft); color: var(--ok); }
+            .toast.bad { background: var(--bad-soft); color: var(--bad); }
+            .toast.info { background: var(--accent-soft); color: var(--accent); }
+            .btn-next {
+                border: none; border-radius: 10px; padding: 10px 26px;
+                font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit;
+                background: var(--accent); color: #fff;
+                transition: all .12s ease; display: none;
+            }
+            .btn-next:hover { background: #d3630a; }
+            .btn-next:disabled { opacity: .5; cursor: not-allowed; }
+            body.demo-mode .btn-next { display: inline-block; }
+            .btn-prev {
+                border: none; border-radius: 10px; padding: 10px 22px;
+                font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit;
+                background: var(--ink-2); color: #fff;
+                transition: all .12s ease; display: none;
+            }
+            .btn-prev:hover { background: #1f3a5f; }
+            .btn-prev:disabled { opacity: .5; cursor: not-allowed; }
+            body.demo-mode .btn-prev { display: inline-block; }
+            
+            @media (max-width: 720px) {
+                .main { flex-direction: column; }
+                .panel { width: 100%; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 1px solid var(--line); }
+                .panel h3 { display: none; }
+                .device-item { padding: 6px 8px; }
+                .steps { flex-wrap: wrap; }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">小互联网仿真器<small>第3课 · 点击链接后发生了什么</small></div>
+            <div class="hd-group">
+                <div class="mode-switch">
+                    <button class="mode-btn active" id="modeBuild">搭建模式</button>
+                    <button class="mode-btn" id="modeDemo">演示模式</button>
+                    <button class="mode-btn" id="modeComm">通信模式</button>
+                </div>
+                <span class="sep"></span>
+                <button class="btn btn-demo" id="btnDemoPlay">开始演示</button>
+                <span class="sep"></span>
+                <button class="btn btn-reset btn-edit" id="btnNew">新建模型</button>
+                <button class="btn btn-reset btn-edit" id="btnSave">保存模型</button>
+                <button class="btn btn-reset btn-edit" id="btnImport">导入模型</button>
+                <button class="btn btn-reset btn-edit" id="btnClear">清空画布</button>
+            </div>
+        </header>
+        
+        <div class="steps">
+            <div class="step" data-step="1"><span class="n">1</span>输入网址</div>
+            <div class="step" data-step="2"><span class="n">2</span>查电话簿(DNS)</div>
+            <div class="step" data-step="3"><span class="n">3</span>打包数据包</div>
+            <div class="step" data-step="4"><span class="n">4</span>路由器查表找路</div>
+            <div class="step" data-step="5"><span class="n">5</span>到达服务器</div>
+            <div class="step" data-step="6"><span class="n">6</span>数据回程·显示网页</div>
+        </div>
+        
+        <div class="main">
+            <aside class="panel">
+                <h3>工具</h3>
+                <div class="tool-row" id="toolRow">
+                    <button class="tool" data-tool="select" title="选择与移动设备">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7.5 17 2.5-7 7-2.5z"/></svg>
+                        选择
+                    </button>
+                    <button class="tool" data-tool="connect" title="点击两个设备，用线连起来">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="12" r="2.5"/><path d="M7.5 12h9"/></svg>
+                        连线
+                    </button>
+                    <button class="tool tool-extra" data-tool="send" title="点一台设备，访问网站">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>
+                        上网
+                    </button>
+                    <button class="tool tool-comm" data-tool="like" title="选择两台电脑，发送点赞">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                        点赞
+                    </button>
+                </div>
+                <p class="pool-hint" id="poolHint">先拖"区域框"划分区域，再拖设备摆放连线</p>
+                <h3>设备库</h3>
+                <div id="deviceList"></div>
+            </aside>
+            
+            <div class="stage-wrap">
+                <div class="stage" id="stage"></div>
+                <svg class="links" id="linksSvg"></svg>
+                <div class="selection-box" id="selectionBox"></div>
+                <div class="kind-menu" id="kindMenu">
+                    <div class="km-title">选择连线介质</div>
+                    <div class="km-options">
+                        <button class="km-opt" data-kind="wire"><span class="km-line" style="background:#2E4A73"></span>网线</button>
+                        <button class="km-opt" data-kind="wifi"><span class="km-line" style="background:#2E4A73;border-top:3px dotted #2E4A73;background:transparent"></span>WiFi</button>
+                        <button class="km-opt" data-kind="fiber"><span class="km-line" style="background:#E8720C;height:4px"></span>光纤</button>
+                    </div>
+                </div>
+                <div class="ctx-menu" id="ctxMenu">
+                    <div class="ctx-item" id="ctxEdit">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink)"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                        编辑名称
+                    </div>
+                    <div class="ctx-item danger" id="ctxDelete">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        删除
+                    </div>
+                </div>
+                <div class="proc-note" id="procNote"></div>
+                <div class="packet-card" id="packetCard"></div>
+                <div class="bubble" id="bubble"></div>
+                <div class="rt-panel" id="rtPanel"></div>
+                <div class="webpage" id="webpage">
+                    <div class="wp-bar"><span class="wp-dot"></span><span class="wp-dot"></span><span class="wp-dot"></span><span class="wp-url">www.baidu.com</span></div>
+                    <div class="wp-body">
+                        <div class="wp-logo">百度一下</div>
+                        <div class="wp-search"><input value="七年级 信息科技" readonly><button>百度搜索</button></div>
+                        <div class="wp-tip">小明收到服务器回传的网页数据，浏览器把它显示出来啦</div>
+                    </div>
+                </div>
+                <div class="site-panel" id="sitePanel">
+                    <h3>你想访问哪个网站？</h3>
+                    <p class="sp-sub">点一个网址，看看点击链接后到底发生了什么</p>
+                    <div class="site-list" id="siteList"></div>
+                    <button class="site-close" id="siteClose">先不访问，关闭</button>
+                </div>
+                <div class="site-panel" id="targetPanel">
+                    <h3>把点赞发给谁？</h3>
+                    <p class="sp-sub">选择一台目标电脑，看看点赞能不能送到</p>
+                    <div class="site-list" id="targetList"></div>
+                    <button class="site-close" id="targetClose">取消</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="status" id="status"></div>
+            <button class="btn-prev" id="btnPrev">上一步</button>
+            <button class="btn-next" id="btnNext">下一步</button>
+            <div class="toast" id="toast"></div>
+        </footer>
+        
+        <script>
+            (function () {
+                'use strict';
+                
+                /* ===== 设备定义 ===== */
+                var DEVICES = {
+                    pc: { name: '电脑', desc: '发送和接收信息',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="22" rx="2.5" fill="#2E4A73"/><rect x="11" y="11" width="26" height="16" rx="1.5" fill="#D8E3F2"/><rect x="18" y="33" width="12" height="3" rx="1.5" fill="#7A8699"/><rect x="15" y="36" width="18" height="3" rx="1.5" fill="#7A8699"/></svg>' },
+                    phone: { name: '手机', desc: '无线设备，连WiFi上网',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="5" width="18" height="38" rx="4" fill="#2E4A73"/><rect x="18" y="10" width="12" height="24" rx="1.5" fill="#D8E3F2"/><circle cx="24" cy="40" r="2" fill="#7A8699"/></svg>' },
+                    tablet: { name: '平板', desc: '无线设备，连WiFi上网',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="36" height="27" rx="3" fill="#2E4A73"/><rect x="9" y="13" width="30" height="21" rx="1.5" fill="#D8E3F2"/><rect x="21" y="37" width="6" height="2" rx="1" fill="#7A8699"/></svg>' },
+                    switch: { name: '交换机', desc: '把多台设备连成局域网',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="15" width="36" height="20" rx="3" fill="#2E4A73"/><circle cx="12" cy="25" r="2.6" fill="#E8720C"/><circle cx="20" cy="25" r="2.6" fill="#E8720C"/><circle cx="28" cy="25" r="2.6" fill="#E8720C"/><circle cx="36" cy="25" r="2.6" fill="#E8720C"/><rect x="15" y="38" width="18" height="3" rx="1.5" fill="#7A8699"/></svg>' },
+                    router: { name: '路由器', desc: '连接不同网络，具有3个LAN口',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="20" width="32" height="15" rx="3" fill="#1A2E4B"/><line x1="15" y1="7" x2="15" y2="19" stroke="#1A2E4B" stroke-width="3.5" stroke-linecap="round"/><line x1="33" y1="7" x2="33" y2="19" stroke="#1A2E4B" stroke-width="3.5" stroke-linecap="round"/><circle cx="15" cy="5.5" r="2.2" fill="#E8720C"/><circle cx="33" cy="5.5" r="2.2" fill="#E8720C"/><circle cx="13" cy="27" r="2.2" fill="#E8720C"/><circle cx="35" cy="27" r="2.2" fill="#E8720C"/></svg>' },
+                    ap: { name: '无线AP', desc: '发射WiFi信号，接在交换机或路由器上',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="22" width="24" height="14" rx="3" fill="#2E4A73"/><path d="M18 20c2-3 5-4.5 6-4.5s4 1.5 6 4.5" stroke="#E8720C" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M15 16c3-4.5 7-6.5 9-6.5s6 2 9 6.5" stroke="#E8720C" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="24" cy="12" r="2.5" fill="#E8720C"/><rect x="18" y="30" width="12" height="2.5" rx="1" fill="#D8E3F2"/></svg>' },
+                    modem: { name: '光猫', desc: '把光信号变成电信号',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="18" width="36" height="14" rx="2.5" fill="#2E4A73"/><circle cx="12" cy="25" r="2" fill="#2E9E5B"/><circle cx="19" cy="25" r="2" fill="#E8720C"/><circle cx="26" cy="25" r="2" fill="#E8720C"/><rect x="8" y="15" width="8" height="3" rx="1" fill="#7A8699"/><line x1="36" y1="34" x2="36" y2="39" stroke="#E8720C" stroke-width="2"/><circle cx="36" cy="41.5" r="2.5" fill="#E8720C"/></svg>' },
+                    dns: { name: 'DNS服务器', desc: '互联网电话簿',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="28" height="28" rx="4" fill="#1A2E4B"/><rect x="15" y="15" width="18" height="4" rx="1" fill="#E8720C"/><rect x="15" y="22" width="18" height="4" rx="1" fill="#E8720C"/><rect x="15" y="29" width="12" height="4" rx="1" fill="#E8720C"/></svg>' },
+                    web: { name: 'Web服务器', desc: '存放网页，收到请求就发送',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="28" height="28" rx="4" fill="#1A2E4B"/><circle cx="24" cy="24" r="6" fill="#E8720C"/><path d="M15 15h18M15 22h18M15 29h18" stroke="#E8720C" stroke-width="2" stroke-linecap="round" opacity=".7"/></svg>' },
+                    internet: { name: '互联网', desc: '外面的大千世界',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 35a9 9 0 1 1 1.5-17.9A12 12 0 0 1 39 22.5 7.5 7.5 0 0 1 36 35H15z" fill="#FFFFFF" opacity=".9"/><path d="M20 29l4.5-5 3.8 3.8 3-4.5" stroke="#2E4A73" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+                    zone: { name: '区域框', desc: '拖到画布上，划分一个区域',
+                    icon: '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="5" stroke="#E8720C" stroke-width="2.5" stroke-dasharray="6 4"/><path d="M8 16h6M8 25h4" stroke="#E8720C" stroke-width="2" stroke-linecap="round"/></svg>' }
+                };
+                
+                /* 各模式的设备库 */
+                var MODE_DEVICES = {
+                    build: ['zone', 'pc', 'phone', 'tablet', 'switch', 'router', 'ap', 'modem', 'internet'],
+                    demo: [],
+                    comm: ['zone', 'pc', 'switch', 'router']
+                };
+                
+                /* 各模式的工具 */
+                var MODE_TOOLS = {
+                    build: ['select', 'connect', 'send'],
+                    demo: ['select'],
+                    comm: ['select', 'connect', 'like']
+                };
+                
+                var SITES = [
+                { name: '百度', url: 'www.baidu.com', ip: '110.242.68.66' },
+                { name: '哔哩哔哩', url: 'www.bilibili.com', ip: '134.175.47.77' },
+                { name: '淘宝', url: 'www.taobao.com', ip: '140.205.144.11' }
+                ];
+                
+                /* ===== 状态 ===== */
+                var state = {
+                    mode: 'build',
+                    tool: 'select',
+                    devices: [],
+                    links: [],
+                    nextId: 1,
+                    connectFrom: null,
+                    sendRunning: false,
+                    demoStep: 0,
+                    demoPlaying: false,
+                    selection: [],       // 多选的设备id
+                    selectedLinkId: null,
+                    pendingKindLink: null // 等待选择介质的连线
+                };
+                
+                var els = {};
+                var svgNS = 'http://www.w3.org/2000/svg';
+                var pendingPcId = null;
+                
+                /* ===== 初始化 ===== */
+                function init() {
+                    els.stage = document.getElementById('stage');
+                    els.linksSvg = document.getElementById('linksSvg');
+                    els.status = document.getElementById('status');
+                    els.toast = document.getElementById('toast');
+                    els.deviceList = document.getElementById('deviceList');
+                    els.procNote = document.getElementById('procNote');
+                    els.packetCard = document.getElementById('packetCard');
+                    els.bubble = document.getElementById('bubble');
+                    els.rtPanel = document.getElementById('rtPanel');
+                    els.webpage = document.getElementById('webpage');
+                    els.sitePanel = document.getElementById('sitePanel');
+                    els.siteList = document.getElementById('siteList');
+                    els.siteClose = document.getElementById('siteClose');
+                    els.targetPanel = document.getElementById('targetPanel');
+                    els.targetList = document.getElementById('targetList');
+                    els.targetClose = document.getElementById('targetClose');
+                    els.btnNext = document.getElementById('btnNext');
+                    els.btnPrev = document.getElementById('btnPrev');
+                    els.selectionBox = document.getElementById('selectionBox');
+                    els.kindMenu = document.getElementById('kindMenu');
+                    els.ctxMenu = document.getElementById('ctxMenu');
+                    els.ctxDelete = document.getElementById('ctxDelete');
+                    els.ctxEdit = document.getElementById('ctxEdit');
+                    els.poolHint = document.getElementById('poolHint');
+                    
+                    renderSiteList();
+                    bindTools();
+                    bindTopbar();
+                    bindStage();
+                    bindPoolDrag();
+                    bindResize();
+                    bindKeyboard();
+                    bindKindMenu();
+                    bindWindowResize();
+                    
+                    els.linksSvg.addEventListener('click', function (e) {
+                        var hit = e.target.closest('[data-link]');
+                        if (!hit) return;
+                        var lid = Number(hit.getAttribute('data-link'));
+                        selectLink(lid);
+                    });
+                    
+                    els.siteClose.addEventListener('click', closeSitePanel);
+                    els.targetClose.addEventListener('click', closeTargetPanel);
+                    
+                    loadBuildScene();
+                    setTool('select');
+                    updateToolVisibility();
+                    renderDeviceList();
+                }
+                
+                /* ===== 窗口自适应 ===== */
+                function bindWindowResize() {
+                    var resizeTimer;
+                    window.addEventListener('resize', function () {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(function () {
+                            renderLinks();
+                            renderPortLabels();
+                        }, 150);
+                    });
+                }
+                
+                function renderSiteList() {
+                    els.siteList.innerHTML = '';
+                    SITES.forEach(function (s) {
+                        var btn = document.createElement('button');
+                        btn.className = 'site-btn';
+                        btn.innerHTML = '<span class="s-name">' + s.name + '</span><span class="s-url">' + s.url + '</span>';
+                        btn.addEventListener('click', function () { startVisit(s); });
+                        els.siteList.appendChild(btn);
+                    });
+                }
+                
+                function renderDeviceList() {
+                    var order = MODE_DEVICES[state.mode] || [];
+                    els.deviceList.innerHTML = '';
+                    order.forEach(function (t) {
+                        var d = DEVICES[t];
+                        var item = document.createElement('div');
+                        item.className = 'device-item';
+                        item.dataset.type = t;
+                        item.innerHTML = '<div class="d-ico">' + d.icon + '</div><div class="d-info"><div class="d-name">' + d.name + '</div><div class="d-desc">' + d.desc + '</div></div>';
+                        els.deviceList.appendChild(item);
+                    });
+                    bindPoolDrag();
+                }
+                
+                /* 工具按钮显隐 */
+                function updateToolVisibility() {
+                    var tools = MODE_TOOLS[state.mode] || [];
+                    document.querySelectorAll('.tool').forEach(function (b) {
+                        var t = b.dataset.tool;
+                        var show = tools.indexOf(t) !== -1;
+                        b.style.display = show ? '' : 'none';
+                        if (!show && state.tool === t) setTool('select');
+                    });
+                }
+                
+                /* 从设备库拖到画布 */
+                function bindPoolDrag() {
+                    els.deviceList.querySelectorAll('.device-item').forEach(function (item) {
+                        item.addEventListener('pointerdown', function (e) {
+                            if (state.mode === 'demo') return;
+                            e.preventDefault();
+                            var type = item.dataset.type;
+                            var ghost = document.createElement('div');
+                            ghost.className = 'drag-ghost';
+                            ghost.innerHTML = DEVICES[type].icon + '<span>' + DEVICES[type].name + '</span>';
+                            document.body.appendChild(ghost);
+                            ghost.style.left = (e.clientX - 46) + 'px';
+                            ghost.style.top = (e.clientY - 28) + 'px';
+                            
+                            function onMove(ev) {
+                                ghost.style.left = (ev.clientX - 46) + 'px';
+                                ghost.style.top = (ev.clientY - 28) + 'px';
+                            }
+                            function onUp(ev) {
+                                document.removeEventListener('pointermove', onMove);
+                                document.removeEventListener('pointerup', onUp);
+                                document.removeEventListener('pointercancel', onUp);
+                                ghost.remove();
+                                var rect = els.stage.getBoundingClientRect();
+                                var inStage = ev.clientX >= rect.left && ev.clientX <= rect.right &&
+                                ev.clientY >= rect.top && ev.clientY <= rect.bottom;
+                                if (!inStage) { setStatus('拖到画布上再松手，才能放置设备。'); return; }
+                                if (type === 'internet' && state.devices.some(function (d) { return d.type === 'internet'; })) {
+                                    showToast('info', '互联网只有一个，画布上已经有了。'); return;
+                                }
+                                var x = ev.clientX - rect.left;
+                                var y = ev.clientY - rect.top;
+                                if (type === 'zone') {
+                                    state.devices.push({ id: state.nextId++, type: 'zone', x: Math.round(x), y: Math.round(y), w: 340, h: 260, label: '区域' });
+                                    renderAll();
+                                    showToast('ok', '已放置区域框，双击它可以给区域起名字。');
+                                    return;
+                                }
+                                var newDev = { id: state.nextId++, type: type, x: Math.round(x), y: Math.round(y) };
+                                state.devices.push(newDev);
+                                renderAll();
+                                showToast('info', '已放置【' + DEVICES[type].name + '】，继续拖别的设备吧。');
+                            }
+                            document.addEventListener('pointermove', onMove);
+                            document.addEventListener('pointerup', onUp);
+                            document.addEventListener('pointercancel', onUp);
+                        });
+                    });
+                }
+                
+                /* ===== 顶部按钮 ===== */
+                function bindTopbar() {
+                    document.getElementById('modeBuild').addEventListener('click', function () { switchMode('build'); });
+                    document.getElementById('modeDemo').addEventListener('click', function () { switchMode('demo'); });
+                    document.getElementById('modeComm').addEventListener('click', function () { switchMode('comm'); });
+                    document.getElementById('btnClear').addEventListener('click', function () {
+                        if (state.mode === 'demo') { switchMode('build'); return; }
+                        clearScene();
+                    });
+                    document.getElementById('btnNew').addEventListener('click', function () {
+                        if (state.mode === 'demo') { switchMode('build'); }
+                        clearScene();
+                        setStatus('空白画布已就绪：从左侧设备库把设备拖到画布上，搭好你的网络模型。');
+                        showToast('info', '新建空白模型，开始搭建吧。');
+                    });
+                    document.getElementById('btnSave').addEventListener('click', saveModel);
+                    document.getElementById('btnImport').addEventListener('click', importModel);
+                    document.getElementById('btnDemoPlay').addEventListener('click', startDemo);
+                }
+                
+                /* ===== 模型管理 ===== */
+                function saveModel() {
+                    if (state.mode === 'demo') { showToast('info', '请先切回搭建或通信模式，再保存模型。'); return; }
+                    if (state.devices.length === 0) { showToast('info', '画布还是空的，先搭一些设备再保存吧。'); return; }
+                    var data = {
+                        version: 2, mode: state.mode, savedAt: new Date().toISOString(),
+                        devices: state.devices.map(function (d) {
+                            return { id: d.id, type: d.type, x: d.x, y: d.y, ip: d.ip || '', label: d.label || '', w: d.w || 0, h: d.h || 0, addr: d.addr || '' };
+                        }),
+                        links: state.links.map(function (l) {
+                            return { id: l.id, a: l.a, b: l.b, kind: l.kind, portA: l.portA || 0, portB: l.portB || 0 };
+                        }),
+                        nextId: state.nextId
+                    };
+                    var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
+                    a.href = url; a.download = '网络模型-' + Date.now() + '.json';
+                    document.body.appendChild(a); a.click(); a.remove();
+                    URL.revokeObjectURL(url);
+                    showToast('ok', '模型已保存为 .json 文件，下次点"导入模型"即可继续编辑。');
+                }
+                
+                function importModel() {
+                    if (state.mode === 'demo') switchMode('build');
+                    var input = document.createElement('input');
+                    input.type = 'file'; input.accept = '.json,application/json';
+                    input.addEventListener('change', function () {
+                        var file = input.files[0]; if (!file) return;
+                        var reader = new FileReader();
+                        reader.onload = function () {
+                            try {
+                                var data = JSON.parse(reader.result);
+                                if (!data.devices || !Array.isArray(data.devices)) throw new Error('bad format');
+                                var validTypes = Object.keys(DEVICES);
+                                var devices = [];
+                                data.devices.forEach(function (d) {
+                                    if (validTypes.indexOf(d.type) === -1) return;
+                                    devices.push({
+                                        id: Number(d.id), type: d.type, x: Number(d.x), y: Number(d.y),
+                                        ip: d.ip ? String(d.ip) : undefined, label: d.label ? String(d.label) : undefined,
+                                        w: d.w ? Number(d.w) : undefined, h: d.h ? Number(d.h) : undefined,
+                                        addr: d.addr ? String(d.addr) : undefined
+                                    });
+                                });
+                                if (devices.length === 0) throw new Error('no devices');
+                                var links = [];
+                                (data.links || []).forEach(function (l) {
+                                    links.push({ id: Number(l.id), a: Number(l.a), b: Number(l.b), kind: l.kind || 'wire', portA: l.portA || 0, portB: l.portB || 0 });
+                                });
+                                var maxId = 0;
+                                devices.forEach(function (d) { if (d.id > maxId) maxId = d.id; });
+                                links.forEach(function (l) { if (l.id > maxId) maxId = l.id; });
+                                state.devices = devices; state.links = links;
+                                state.nextId = data.nextId > maxId ? Number(data.nextId) : maxId + 1;
+                                state.connectFrom = null; state.sendRunning = false;
+                                state.selection = []; state.selectedLinkId = null;
+                                clearOverlays(); clearDeviceDom(); renderAll();
+                                setTool('select');
+                                if (data.mode === 'comm') switchMode('comm');
+                                setStatus('模型已导入：共 ' + state.devices.length + ' 台设备、' + state.links.length + ' 条连线，可以继续编辑。');
+                                showToast('ok', '导入成功，继续搭建吧！');
+                            } catch (err) {
+                                showToast('bad', '文件格式不对，请选择本工具保存的 .json 模型文件。');
+                            }
+                        };
+                        reader.readAsText(file);
+                    });
+                    input.click();
+                }
+                
+                function switchMode(m) {
+                    state.mode = m;
+                    document.getElementById('modeBuild').classList.toggle('active', m === 'build');
+                    document.getElementById('modeDemo').classList.toggle('active', m === 'demo');
+                    document.getElementById('modeComm').classList.toggle('active', m === 'comm');
+                    document.body.classList.toggle('demo-mode', m === 'demo');
+                    clearOverlays(); hideRtPanel(); setSteps(0);
+                    state.demoStep = 0; state.selection = []; state.selectedLinkId = null;
+                    els.btnNext.disabled = false; els.btnPrev.disabled = false;
+                    updateToolVisibility();
+                    renderDeviceList();
+                    if (m === 'demo') {
+                        loadDemoScene();
+                        setTool('select');
+                        setStatus('演示模式：网络已经搭好，点顶部橙色"开始演示"，再一步步点"下一步"观看寻址过程。');
+                        showToast('info', '点顶部"开始演示"，然后跟着"下一步"走。');
+                    } else if (m === 'comm') {
+                        loadCommScene();
+                        setTool('select');
+                        els.poolHint.textContent = '拖入电脑、交换机、路由器搭建网络；双击电脑设置编号；连线后路由器自动分配接口号';
+                    } else {
+                        loadBuildScene();
+                        setTool('select');
+                        els.poolHint.textContent = '先拖"区域框"划分区域，再拖设备摆放连线';
+                    }
+                }
+                
+                /* ===== 工具 ===== */
+                function bindTools() {
+                    document.querySelectorAll('.tool').forEach(function (b) {
+                        b.addEventListener('click', function () { setTool(b.dataset.tool); });
+                    });
+                }
+                
+                function setTool(t) {
+                    state.tool = t;
+                    state.connectFrom = null;
+                    state.selection = [];
+                    state.selectedLinkId = null;
+                    document.querySelectorAll('.tool').forEach(function (b) {
+                        b.classList.toggle('active', b.dataset.tool === t);
+                    });
+                    document.querySelectorAll('.dev').forEach(function (d) { d.classList.remove('selected'); });
+                    document.querySelectorAll('svg.links line').forEach(function (l) { l.classList.remove('selected'); });
+                    if (state.mode === 'demo' && t !== 'select') {
+                        setStatus('演示模式中只能查看，切换回"搭建模式"才能动手连线。'); return;
+                    }
+                    if (t === 'select') {
+                        setStatus('选择模式：拖动设备可移动；按住空白处拖拽可框选多个设备；选中后按 Delete 或右键删除。（双击设备可改名/设编号）');
+                    } else if (t === 'connect') {
+                        setStatus('连线模式：先点一台设备，再点另一台，连好后选择介质（网线/WiFi/光纤）。');
+                    } else if (t === 'send') {
+                        setStatus('上网模式：点击一台电脑 / 手机 / 平板，选一个网址，看看到底发生了什么。');
+                    } else if (t === 'like') {
+                        setStatus('点赞模式：先点发送方电脑，再选择目标电脑，看看点赞能不能送到。');
+                    }
+                }
+                
+                function setStatus(msg) { els.status.innerHTML = msg; }
+                function showToast(type, msg) {
+                    els.toast.className = 'toast show ' + type;
+                    els.toast.textContent = msg;
+                    clearTimeout(showToast._t);
+                    showToast._t = setTimeout(function () { els.toast.classList.remove('show'); }, 4200);
+                }
+                function setSteps(current) {
+                    document.querySelectorAll('.step').forEach(function (s) {
+                        var n = Number(s.dataset.step);
+                        s.classList.remove('active', 'done');
+                        if (n < current) s.classList.add('done');
+                        else if (n === current) s.classList.add('active');
+                    });
+                }
+                
+                /* ===== 场景 ===== */
+                function clearDeviceDom() {
+                    els.stage.querySelectorAll('.dev').forEach(function (d) { d.remove(); });
+                    els.stage.querySelectorAll('.port-label').forEach(function (d) { d.remove(); });
+                }
+                
+                function clearScene() {
+                    state.devices = []; state.links = []; state.connectFrom = null;
+                    state.nextId = 1; state.sendRunning = false;
+                    state.selection = []; state.selectedLinkId = null;
+                    clearOverlays(); clearDeviceDom(); renderAll();
+                    setStatus('画布已清空：先从设备库拖设备搭建网络。');
+                }
+                
+                function loadBuildScene() {
+                    state.devices = []; state.links = []; state.connectFrom = null;
+                    state.nextId = 1; state.sendRunning = false;
+                    state.selection = []; state.selectedLinkId = null;
+                    clearOverlays(); clearDeviceDom(); renderAll();
+                    setStatus('空白画布：先从设备库拖"区域框"划分区域，再拖设备搭建你的网络。');
+                    showToast('info', '空白画布已就绪，开始搭建吧！');
+                }
+                
+                function loadCommScene() {
+                    state.devices = []; state.links = []; state.connectFrom = null;
+                    state.nextId = 1; state.sendRunning = false;
+                    state.selection = []; state.selectedLinkId = null;
+                    clearOverlays(); clearDeviceDom(); renderAll();
+                    setStatus('通信模式：搭建网络 → 双击电脑设置编号 → 用"点赞"工具测试数据能否送达。路由器连线后自动分配接口号。');
+                    showToast('info', '通信模式：先搭网络，再给电脑编号，然后发点赞测试！');
+                }
+                
+                /* ===== 画布事件（点击/双击/框选/右键） ===== */
+                function bindStage() {
+                    var isSelecting = false;
+                    var selStart = { x: 0, y: 0 };
+                    var justRubberBand = false;
+                    
+                    els.stage.addEventListener('pointerdown', function (e) {
+                        if (e.target.closest('.dev') || e.target.closest('.resize-handle')) return;
+                        if (state.tool !== 'select' || state.mode === 'demo') return;
+                        if (e.button !== 0) return;
+                        var rect = els.stage.getBoundingClientRect();
+                        isSelecting = true;
+                        selStart.x = e.clientX - rect.left;
+                        selStart.y = e.clientY - rect.top;
+                        els.selectionBox.style.display = 'block';
+                        els.selectionBox.style.left = selStart.x + 'px';
+                        els.selectionBox.style.top = selStart.y + 'px';
+                        els.selectionBox.style.width = '0px';
+                        els.selectionBox.style.height = '0px';
+                        state.selection = [];
+                        document.querySelectorAll('.dev').forEach(function (d) { d.classList.remove('selected'); });
+                    });
+                    
+                    document.addEventListener('pointermove', function (e) {
+                        if (!isSelecting) return;
+                        var rect = els.stage.getBoundingClientRect();
+                        var cx = e.clientX - rect.left;
+                        var cy = e.clientY - rect.top;
+                        var x = Math.min(selStart.x, cx);
+                        var y = Math.min(selStart.y, cy);
+                        var w = Math.abs(cx - selStart.x);
+                        var h = Math.abs(cy - selStart.y);
+                        els.selectionBox.style.left = x + 'px';
+                        els.selectionBox.style.top = y + 'px';
+                        els.selectionBox.style.width = w + 'px';
+                        els.selectionBox.style.height = h + 'px';
+                    });
+                    
+                    document.addEventListener('pointerup', function (e) {
+                        if (!isSelecting) return;
+                        isSelecting = false;
+                        var box = els.selectionBox.getBoundingClientRect();
+                        var stageRect = els.stage.getBoundingClientRect();
+                        var bx = box.left - stageRect.left;
+                        var by = box.top - stageRect.top;
+                        var bw = box.width;
+                        var bh = box.height;
+                        els.selectionBox.style.display = 'none';
+                        if (bw < 5 || bh < 5) return;
+                        state.devices.forEach(function (d) {
+                            if (d.x >= bx && d.x <= bx + bw && d.y >= by && d.y <= by + bh) {
+                                state.selection.push(d.id);
+                            }
+                        });
+                        state.selection.forEach(function (id) {
+                            var el = els.stage.querySelector('.dev[data-id="' + id + '"]');
+                            if (el) el.classList.add('selected');
+                        });
+                        if (state.selection.length > 0) {
+                            justRubberBand = true;
+                            setStatus('已选中 ' + state.selection.length + ' 个设备，拖动其中一个可集体移动；按 Delete 删除。');
+                        }
+                    });
+                    
+                    /* 单击 */
+                    els.stage.addEventListener('click', function (e) {
+                        if (justRubberBand) { justRubberBand = false; return; }
+                        var pencilEl = e.target.closest('.edit-pencil');
+                        if (pencilEl) {
+                            var pDevEl = pencilEl.closest('.dev');
+                            if (pDevEl) {
+                                e.stopPropagation();
+                                var pid = Number(pDevEl.dataset.id);
+                                var pdev = getDev(pid);
+                                if (pdev && state.mode !== 'demo') {
+                                    if (pdev.type === 'zone') {
+                                        var zn = window.prompt('给这个区域起个名字（如：机房区域、家庭区域）：', pdev.label || '区域');
+                                        if (zn && zn.trim()) { pdev.label = zn.trim(); renderAll(); }
+                                    } else if (state.mode === 'comm' && pdev.type === 'pc') {
+                                        var ad = window.prompt('给这台电脑设置编号（格式：网络号.主机号，如 1.10）：', pdev.addr || '');
+                                        if (ad !== null) { pdev.addr = ad.trim(); renderAll(); }
+                                    } else {
+                                        var lb = window.prompt('修改设备名称：', pdev.label || DEVICES[pdev.type].name);
+                                        if (lb !== null && lb.trim()) { pdev.label = lb.trim(); renderAll(); }
+                                    }
+                                }
+                            }
+                            return;
+                        }
+                        var devEl = e.target.closest('.dev');
+                        if (devEl) { handleDevClick(Number(devEl.dataset.id), e); return; }
+                        /* 点击空白 */
+                        state.selection = [];
+                        state.selectedLinkId = null;
+                        document.querySelectorAll('.dev').forEach(function (d) { d.classList.remove('selected'); });
+                        document.querySelectorAll('svg.links line').forEach(function (l) { l.classList.remove('selected'); });
+                        if (state.connectFrom) state.connectFrom = null;
+                    });
+                    
+                    /* 双击改名（所有设备） */
+                    els.stage.addEventListener('dblclick', function (e) {
+                        var devEl = e.target.closest('.dev');
+                        if (!devEl) return;
+                        var dev = getDev(Number(devEl.dataset.id));
+                        if (!dev) return;
+                        if (state.mode === 'demo') return;
+                        if (dev.type === 'zone') {
+                            var name = window.prompt('给这个区域起个名字（如：机房区域、家庭区域）：', dev.label || '区域');
+                            if (name && name.trim()) {
+                                dev.label = name.trim();
+                                var tag = devEl.querySelector('.zone-tag');
+                                if (tag) tag.textContent = dev.label;
+                                showToast('ok', '区域已命名为「' + dev.label + '」。');
+                            }
+                        } else if (state.mode === 'comm' && dev.type === 'pc') {
+                            var addr = window.prompt('给这台电脑设置编号（格式：网络号.主机号，如 1.10）：\n\n提示：同一网络里的电脑网络号相同、主机号不同。', dev.addr || '');
+                            if (addr !== null) {
+                                dev.addr = addr.trim();
+                                renderAll();
+                                showToast('ok', '电脑编号已设置为「' + dev.addr + '」。');
+                            }
+                        } else {
+                            var label = window.prompt('修改设备名称：', dev.label || DEVICES[dev.type].name);
+                            if (label !== null && label.trim()) {
+                                dev.label = label.trim();
+                                renderAll();
+                                showToast('ok', '设备已改名为「' + dev.label + '」。');
+                            }
+                        }
+                    });
+                    
+                    /* 右键弹出菜单 */
+                    var ctxTarget = null; /* {type:'dev'|'link', id} */
+                    els.stage.addEventListener('contextmenu', function (e) {
+                        e.preventDefault();
+                        if (state.mode === 'demo') return;
+                        hideCtxMenu();
+                        var devEl = e.target.closest('.dev');
+                        var linkHit = e.target.closest('[data-link]');
+                        if (devEl) {
+                            var id = Number(devEl.dataset.id);
+                            ctxTarget = { type: 'dev', id: id };
+                            els.ctxEdit.style.display = '';
+                        } else if (linkHit) {
+                            var lid = Number(linkHit.getAttribute('data-link'));
+                            ctxTarget = { type: 'link', id: lid };
+                            els.ctxEdit.style.display = 'none';
+                        } else {
+                            return;
+                        }
+                        var rect = els.stage.getBoundingClientRect();
+                        els.ctxMenu.style.left = (e.clientX - rect.left) + 'px';
+                        els.ctxMenu.style.top = (e.clientY - rect.top) + 'px';
+                        els.ctxMenu.classList.add('show');
+                    });
+                    
+                    /* 右键菜单：编辑名称 */
+                    els.ctxEdit.addEventListener('click', function () {
+                        if (!ctxTarget || ctxTarget.type !== 'dev') return;
+                        var dev = getDev(ctxTarget.id);
+                        if (!dev) return;
+                        if (dev.type === 'zone') {
+                            var zn = window.prompt('给这个区域起个名字：', dev.label || '区域');
+                            if (zn && zn.trim()) { dev.label = zn.trim(); renderAll(); }
+                        } else if (state.mode === 'comm' && dev.type === 'pc') {
+                            var ad = window.prompt('设置编号（网络号.主机号，如 1.10）：', dev.addr || '');
+                            if (ad !== null) { dev.addr = ad.trim(); renderAll(); }
+                        } else {
+                            var lb = window.prompt('修改设备名称：', dev.label || DEVICES[dev.type].name);
+                            if (lb !== null && lb.trim()) { dev.label = lb.trim(); renderAll(); }
+                        }
+                        hideCtxMenu();
+                        ctxTarget = null;
+                    });
+                    
+                    els.ctxDelete.addEventListener('click', function () {
+                        if (!ctxTarget) return;
+                        if (ctxTarget.type === 'dev') {
+                            var d = getDev(ctxTarget.id);
+                            var tn = d ? DEVICES[d.type].name : '设备';
+                            removeDev(ctxTarget.id);
+                            showToast('info', '已删除【' + tn + '】。');
+                        } else if (ctxTarget.type === 'link') {
+                            removeLink(ctxTarget.id);
+                            showToast('info', '已删除连线。');
+                        }
+                        ctxTarget = null;
+                        hideCtxMenu();
+                    });
+                    document.addEventListener('pointerdown', function (e) {
+                        if (!e.target.closest('.ctx-menu')) hideCtxMenu();
+                    });
+                }
+                
+                function hideCtxMenu() {
+                    if (els.ctxMenu) els.ctxMenu.classList.remove('show');
+                }
+                
+                /* 选中连线 */
+                function selectLink(lid) {
+                    state.selectedLinkId = lid;
+                    state.selection = [];
+                    document.querySelectorAll('.dev').forEach(function (d) { d.classList.remove('selected'); });
+                    document.querySelectorAll('svg.links line').forEach(function (l) { l.classList.remove('selected'); });
+                    var line = els.linksSvg.querySelector('line[data-link="' + lid + '"]');
+                    if (line) line.classList.add('selected');
+                    var link = getLink(lid);
+                    if (link) {
+                        var a = getDev(link.a), b = getDev(link.b);
+                        var kindName = link.kind === 'wifi' ? 'WiFi' : link.kind === 'fiber' ? '光纤' : '网线';
+                        setStatus('选中连线：' + DEVICES[a.type].name + ' ↔ ' + DEVICES[b.type].name + '（' + kindName + '）。按 Delete 或右键可删除。');
+                    }
+                }
+                
+                /* ===== 键盘删除 ===== */
+                function bindKeyboard() {
+                    document.addEventListener('keydown', function (e) {
+                        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                        if (state.mode === 'demo') return;
+                        if (e.key === 'Backspace' || e.key === 'Delete') {
+                            if (state.selection.length > 0) {
+                                e.preventDefault();
+                                var ids = state.selection.slice();
+                                ids.forEach(function (id) { removeDev(id); });
+                                state.selection = [];
+                                showToast('info', '已删除选中的 ' + ids.length + ' 个设备。');
+                            } else if (state.selectedLinkId !== null) {
+                                e.preventDefault();
+                                removeLink(state.selectedLinkId);
+                                state.selectedLinkId = null;
+                                showToast('info', '已删除选中的连线。');
+                            }
+                        }
+                    });
+                }
+                
+                function handleDevClick(id, e) {
+                    var dev = getDev(id);
+                    if (!dev) return;
+                    if (state.mode === 'demo') {
+                        if (state.demoPlaying) return;
+                        var d = DEVICES[dev.type];
+                        var ipInfo = dev.ip ? ('  IP：' + dev.ip) : (dev.addr ? ('  编号：' + dev.addr) : '');
+                        setStatus('【' + (dev.label || d.name) + '】：' + d.desc + ipInfo + '。');
+                        return;
+                    }
+                    if (state.tool === 'connect') {
+                        if (!state.connectFrom) {
+                            state.connectFrom = id;
+                            e.target.closest('.dev').classList.add('selected');
+                            setStatus('再点另一台设备，把它和【' + (getDev(id).label || DEVICES[dev.type].name) + '】连起来。');
+                        } else if (state.connectFrom === id) {
+                            state.connectFrom = null;
+                            e.target.closest('.dev').classList.remove('selected');
+                            setStatus('连线模式：先点一台设备，再点另一台设备。');
+                        } else {
+                            var fromEl = els.stage.querySelector('.dev[data-id="' + state.connectFrom + '"]');
+                            if (fromEl) fromEl.classList.remove('selected');
+                            addLink(state.connectFrom, id);
+                            state.connectFrom = null;
+                        }
+                        return;
+                    }
+                    if (state.tool === 'send') {
+                        if (dev.type !== 'pc' && dev.type !== 'phone' && dev.type !== 'tablet') {
+                            showToast('info', '上网要从电脑 / 手机 / 平板开始，请点一个终端设备。'); return;
+                        }
+                        openSitePanel(id); return;
+                    }
+                    if (state.tool === 'like') {
+                        if (dev.type !== 'pc') {
+                            showToast('info', '点赞要从电脑开始，请点一台电脑。'); return;
+                        }
+                        openTargetPanel(id); return;
+                    }
+                    /* select 模式 */
+                    if (state.selection.indexOf(id) !== -1 && state.selection.length > 1) {
+                        /* 已在多选组中，不改变选中，拖动时会集体移动 */
+                        return;
+                    }
+                    state.selection = [id];
+                    state.selectedLinkId = null;
+                    document.querySelectorAll('.dev').forEach(function (d) { d.classList.remove('selected'); });
+                    document.querySelectorAll('svg.links line').forEach(function (l) { l.classList.remove('selected'); });
+                    e.target.closest('.dev').classList.add('selected');
+                    if (dev.type === 'zone') {
+                        setStatus('区域框「' + (dev.label || '区域') + '」：拖动可移动，双击改名，拖右下角缩放。');
+                        return;
+                    }
+                    var info = dev.ip ? ('  IP：' + dev.ip) : (dev.addr ? ('  编号：' + dev.addr) : '');
+                    setStatus('【' + (dev.label || DEVICES[dev.type].name) + '】：' + DEVICES[dev.type].desc + info + '。双击可改名。');
+                }
+                
+                /* ===== 网址/目标面板 ===== */
+                function openSitePanel(pcId) {
+                    if (state.sendRunning) return;
+                    pendingPcId = pcId;
+                    els.sitePanel.classList.add('show');
+                }
+                function closeSitePanel() { els.sitePanel.classList.remove('show'); pendingPcId = null; }
+                
+                function openTargetPanel(pcId) {
+                    if (state.sendRunning) return;
+                    pendingPcId = pcId;
+                    var pcs = state.devices.filter(function (d) { return d.type === 'pc' && d.id !== pcId; });
+                    els.targetList.innerHTML = '';
+                    if (pcs.length === 0) {
+                        els.targetList.innerHTML = '<p style="color:var(--muted);font-size:13px;">画布上还没有其他电脑</p>';
+                    }
+                    pcs.forEach(function (p) {
+                        var btn = document.createElement('button');
+                        btn.className = 'site-btn';
+                        var addr = p.addr ? '（编号：' + p.addr + '）' : '（未设置编号）';
+                        btn.innerHTML = '<span class="s-name">' + (p.label || '电脑') + '</span><span class="s-url">' + addr + '</span>';
+                        btn.addEventListener('click', function () {
+                            closeTargetPanel();
+                            startLikeSend(pcId, p.id);
+                        });
+                        els.targetList.appendChild(btn);
+                    });
+                    els.targetPanel.classList.add('show');
+                }
+                function closeTargetPanel() { els.targetPanel.classList.remove('show'); pendingPcId = null; }
+                
+                /* ===== 设备/连线操作 ===== */
+                function getDev(id) {
+                    for (var i = 0; i < state.devices.length; i++) {
+                        if (state.devices[i].id === id) return state.devices[i];
+                    }
+                    return null;
+                }
+                function getLink(id) {
+                    for (var i = 0; i < state.links.length; i++) {
+                        if (state.links[i].id === id) return state.links[i];
+                    }
+                    return null;
+                }
+                function getDevByType(t) {
+                    for (var i = 0; i < state.devices.length; i++) {
+                        if (state.devices[i].type === t) return state.devices[i];
+                    }
+                    return null;
+                }
+                
+                function addLink(aId, bId) {
+                    if (aId === bId) return;
+                    var da = getDev(aId), db = getDev(bId);
+                    if (!da || !db) return;
+                    if (da.type === 'zone' || db.type === 'zone') {
+                        showToast('info', '区域框只是用来划分区域的，不能连线。'); return;
+                    }
+                    var dup = state.links.some(function (l) {
+                        return (l.a === aId && l.b === bId) || (l.a === bId && l.b === aId);
+                    });
+                    if (dup) { showToast('info', '这两个设备已经连过了。'); return; }
+                    var newLink = { id: state.nextId++, a: aId, b: bId, kind: 'wire', portA: 0, portB: 0 };
+                    /* 通信模式：路由器自动分配接口号 */
+                    if (state.mode === 'comm') {
+                        if (da.type === 'router') newLink.portA = getNextRouterPort(da.id);
+                        if (db.type === 'router') newLink.portB = getNextRouterPort(db.id);
+                    }
+                    state.links.push(newLink);
+                    /* 搭建模式：弹出介质选择 */
+                    if (state.mode === 'build') {
+                        state.pendingKindLink = newLink.id;
+                        showKindMenu(da, db);
+                    } else {
+                        renderAll();
+                        setStatus('连好了！继续连线或切换工具。');
+                    }
+                }
+                
+                /* 路由器下一个可用接口号 */
+                function getNextRouterPort(routerId) {
+                    var maxPort = 0;
+                    state.links.forEach(function (l) {
+                        if (l.a === routerId && l.portA > maxPort) maxPort = l.portA;
+                        if (l.b === routerId && l.portB > maxPort) maxPort = l.portB;
+                    });
+                    return maxPort + 1;
+                }
+                
+                /* 介质选择菜单 */
+                function showKindMenu(devA, devB) {
+                    state.pendingDevA = devA;
+                    state.pendingDevB = devB;
+                    var cx = (devA.x + devB.x) / 2;
+                    var cy = (devA.y + devB.y) / 2;
+                    els.kindMenu.style.left = Math.max(10, cx - 130) + 'px';
+                    els.kindMenu.style.top = Math.max(10, cy - 60) + 'px';
+                    els.kindMenu.classList.add('show');
+                }
+                function bindKindMenu() {
+                    els.kindMenu.querySelectorAll('.km-opt').forEach(function (btn) {
+                        btn.addEventListener('click', function () {
+                            var kind = btn.dataset.kind;
+                            if (state.pendingKindLink !== null) {
+                                var link = getLink(state.pendingKindLink);
+                                if (link) link.kind = kind;
+                                state.pendingKindLink = null;
+                            }
+                            els.kindMenu.classList.remove('show');
+                            renderAll();
+                            var kindName = kind === 'wifi' ? 'WiFi' : kind === 'fiber' ? '光纤' : '网线';
+                            showToast('ok', '已设置为' + kindName + '连线。');
+                            setStatus('连好了！继续点两个设备连线，或点"上网"试试。');
+                        });
+                    });
+                }
+                
+                function removeLink(id) {
+                    state.links = state.links.filter(function (l) { return l.id !== id; });
+                    renderAll();
+                }
+                function removeDev(id) {
+                    state.devices = state.devices.filter(function (d) { return d.id !== id; });
+                    state.links = state.links.filter(function (l) { return l.a !== id && l.b !== id; });
+                    if (state.connectFrom === id) state.connectFrom = null;
+                    state.selection = state.selection.filter(function (sid) { return sid !== id; });
+                    renderAll();
+                }
+                
+                /* ===== 渲染 ===== */
+                function renderAll() {
+                    renderDevices();
+                    renderLinks();
+                    renderPortLabels();
+                }
+                
+                function renderDevices() {
+                    var existing = {};
+                    els.stage.querySelectorAll('.dev').forEach(function (d) { existing[d.dataset.id] = d; });
+                    state.devices.forEach(function (dev) {
+                        var el = existing[dev.id];
+                        var needClass;
+                        if (dev.type === 'zone') needClass = 'dev dev-zone';
+                        else needClass = 'dev' + (dev.type === 'internet' ? ' internet' : '') + (dev.type === 'web' || dev.type === 'dns' ? ' server' : '');
+                        if (!el || el.dataset.type !== dev.type) {
+                            if (el) el.remove();
+                            el = document.createElement('div');
+                            el.dataset.id = dev.id;
+                            els.stage.appendChild(el);
+                        }
+                        el.className = needClass;
+                        el.dataset.type = dev.type;
+                        if (dev.type === 'zone') {
+                            el.innerHTML = '<span class="zone-tag">' + (dev.label || '区域') + '</span>' +
+                            '<span class="zone-size">虚线框 · 双击改名 · 拖右下角缩放</span>' +
+                            '<span class="resize-handle"></span>';
+                        } else {
+                            var pencilSvg = '';
+                            if (state.mode !== 'demo') {
+                                pencilSvg = '<span class="edit-pencil" title="点击编辑名称">' +
+                                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></span>';
+                                }
+                                var infoHtml = '';
+                                if (state.mode === 'comm' && dev.type === 'pc' && dev.addr) {
+                                    infoHtml = '<div class="d-addr">' + dev.addr + '</div>';
+                                } else if (dev.ip) {
+                                    infoHtml = '<div class="d-ip">' + dev.ip + '</div>';
+                                }
+                                el.innerHTML =
+                                '<div class="d-ico">' + DEVICES[dev.type].icon + '</div>' +
+                                '<div class="d-name" style="display:flex;align-items:center;justify-content:center;">' +
+                                    (dev.label || DEVICES[dev.type].name) + pencilSvg +
+                                    '</div>' +
+                                    infoHtml;
+                                }
+                                if (dev.type === 'zone') {
+                                    el.style.width = (dev.w || 340) + 'px';
+                                    el.style.height = (dev.h || 260) + 'px';
+                                }
+                                el.style.left = dev.x + 'px';
+                                el.style.top = dev.y + 'px';
+                                /* 保持选中状态 */
+                                if (state.selection.indexOf(dev.id) !== -1) el.classList.add('selected');
+                                else el.classList.remove('selected');
+                                delete existing[dev.id];
+                            });
+                            Object.keys(existing).forEach(function (k) { existing[k].remove(); });
+                        }
+                        
+                function renderLinks() {
+                    els.linksSvg.innerHTML = '';
+                    state.links.forEach(function (l) {
+                        var a = getDev(l.a), b = getDev(l.b);
+                        if (!a || !b) return;
+                        /* 不可见的加宽点击区域 */
+                        var hitLine = document.createElementNS(svgNS, 'line');
+                        hitLine.setAttribute('data-link', l.id);
+                        hitLine.setAttribute('x1', a.x); hitLine.setAttribute('y1', a.y);
+                        hitLine.setAttribute('x2', b.x); hitLine.setAttribute('y2', b.y);
+                        hitLine.classList.add('hit-area');
+                        els.linksSvg.appendChild(hitLine);
+                        /* 可见的线 */
+                        var line = document.createElementNS(svgNS, 'line');
+                        line.setAttribute('data-link', l.id);
+                        line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+                        line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+                        if (l.kind === 'wifi') line.classList.add('wifi');
+                        if (l.kind === 'fiber') line.classList.add('fiber');
+                        if (state.selectedLinkId === l.id) line.classList.add('selected');
+                        els.linksSvg.appendChild(line);
+                        
+                        var kindName = l.kind === 'wifi' ? 'WiFi' : l.kind === 'fiber' ? '光纤' : '网线';
+                        var label = document.createElementNS(svgNS, 'text');
+                        label.setAttribute('data-link', l.id);
+                        label.setAttribute('x', (a.x + b.x) / 2);
+                        label.setAttribute('y', (a.y + b.y) / 2 - 8);
+                        label.setAttribute('text-anchor', 'middle');
+                        label.setAttribute('font-size', '11');
+                        label.setAttribute('fill', '#7A8699');
+                        label.textContent = kindName;
+                        els.linksSvg.appendChild(label);
+                    });
+                }
+                
+                /* 通信模式：渲染路由器接口标签 */
+                function renderPortLabels() {
+                    els.stage.querySelectorAll('.port-label').forEach(function (el) { el.remove(); });
+                    if (state.mode !== 'comm') return;
+                    state.links.forEach(function (l) {
+                        var a = getDev(l.a), b = getDev(l.b);
+                        if (!a || !b) return;
+                        if (a.type === 'router' && l.portA > 0) {
+                            var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+                            var px = a.x + (mx - a.x) * 0.35;
+                            var py = a.y + (my - a.y) * 0.35;
+                            addPortLabel(px, py, '接口' + l.portA);
+                        }
+                        if (b.type === 'router' && l.portB > 0) {
+                            var mx2 = (a.x + b.x) / 2, my2 = (a.y + b.y) / 2;
+                            var px2 = b.x + (mx2 - b.x) * 0.35;
+                            var py2 = b.y + (my2 - b.y) * 0.35;
+                            addPortLabel(px2, py2, '接口' + l.portB);
+                        }
+                    });
+                }
+                function addPortLabel(x, y, text) {
+                    var el = document.createElement('div');
+                    el.className = 'port-label';
+                    el.textContent = text;
+                    el.style.left = x + 'px';
+                    el.style.top = y + 'px';
+                    els.stage.appendChild(el);
+                }
+                
+                /* ===== 拖动设备（单选/多选集体移动） ===== */
+                function bindStageDrag() {
+                    els.stage.addEventListener('pointerdown', function (e) {
+                        var devEl = e.target.closest('.dev');
+                        if (!devEl) return;
+                        if (e.target.closest('.resize-handle')) return;
+                        if (e.target.closest('.edit-pencil')) return;
+                        if (state.tool !== 'select' || state.mode === 'demo') return;
+                        var id = Number(devEl.dataset.id);
+                        var dev = getDev(id);
+                        if (!dev) return;
+                        e.preventDefault();
+                        
+                        /* 确定要移动的设备集合 */
+                        var moveIds;
+                        if (state.selection.length > 1 && state.selection.indexOf(id) !== -1) {
+                            moveIds = state.selection.slice();
+                        } else {
+                            moveIds = [id];
+                            state.selection = [id];
+                            document.querySelectorAll('.dev').forEach(function (d) { d.classList.remove('selected'); });
+                            devEl.classList.add('selected');
+                        }
+                        
+                        var origPositions = {};
+                        moveIds.forEach(function (mid) {
+                            var md = getDev(mid);
+                            if (md) origPositions[mid] = { x: md.x, y: md.y };
+                        });
+                        
+                        devEl.classList.add('dragging');
+                        var rect = els.stage.getBoundingClientRect();
+                        var startX = e.clientX, startY = e.clientY;
+                        
+                        function onMove(ev) {
+                            var dx = ev.clientX - startX;
+                            var dy = ev.clientY - startY;
+                            moveIds.forEach(function (mid) {
+                                var md = getDev(mid);
+                                if (!md) return;
+                                var nx = origPositions[mid].x + dx;
+                                var ny = origPositions[mid].y + dy;
+                                nx = Math.max(24, Math.min(rect.width - 24, nx));
+                                ny = Math.max(24, Math.min(rect.height - 24, ny));
+                                md.x = Math.round(nx);
+                                md.y = Math.round(ny);
+                                var mel = els.stage.querySelector('.dev[data-id="' + mid + '"]');
+                                if (mel) { mel.style.left = md.x + 'px'; mel.style.top = md.y + 'px'; }
+                            });
+                            updateLinkEnds();
+                            renderPortLabels();
+                        }
+                        function onUp() {
+                            document.removeEventListener('pointermove', onMove);
+                            document.removeEventListener('pointerup', onUp);
+                            devEl.classList.remove('dragging');
+                        }
+                        document.addEventListener('pointermove', onMove);
+                        document.addEventListener('pointerup', onUp);
+                    });
+                }
+                
+                /* ===== 区域框缩放 ===== */
+                function bindResize() {
+                    els.stage.addEventListener('pointerdown', function (e) {
+                        var handle = e.target.closest('.resize-handle');
+                        if (!handle) return;
+                        if (state.tool !== 'select' || state.mode === 'demo') return;
+                        e.preventDefault();
+                        var devEl = handle.closest('.dev');
+                        var dev = getDev(Number(devEl.dataset.id));
+                        if (!dev) return;
+                        var startX = e.clientX, startY = e.clientY;
+                        var startW = dev.w || 340, startH = dev.h || 260;
+                        var left = dev.x - startW / 2, top = dev.y - startH / 2;
+                        function onMove(ev) {
+                            var nw = startW + (ev.clientX - startX);
+                            var nh = startH + (ev.clientY - startY);
+                            nw = Math.max(120, Math.min(1400, nw));
+                            nh = Math.max(90, Math.min(1000, nh));
+                            dev.w = Math.round(nw); dev.h = Math.round(nh);
+                            dev.x = Math.round(left + dev.w / 2);
+                            dev.y = Math.round(top + dev.h / 2);
+                            devEl.style.width = dev.w + 'px';
+                            devEl.style.height = dev.h + 'px';
+                            devEl.style.left = dev.x + 'px';
+                            devEl.style.top = dev.y + 'px';
+                        }
+                        function onUp() {
+                            document.removeEventListener('pointermove', onMove);
+                            document.removeEventListener('pointerup', onUp);
+                            document.removeEventListener('pointercancel', onUp);
+                        }
+                        document.addEventListener('pointermove', onMove);
+                        document.addEventListener('pointerup', onUp);
+                        document.addEventListener('pointercancel', onUp);
+                    });
+                }
+                
+                function updateLinkEnds() {
+                    state.links.forEach(function (l) {
+                        var a = getDev(l.a), b = getDev(l.b);
+                        if (!a || !b) return;
+                        var line = els.linksSvg.querySelector('line[data-link="' + l.id + '"]');
+                        if (line) {
+                            line.setAttribute('x1', a.x); line.setAttribute('y1', a.y);
+                            line.setAttribute('x2', b.x); line.setAttribute('y2', b.y);
+                        }
+                        var label = els.linksSvg.querySelector('text[data-link="' + l.id + '"]');
+                        if (label) {
+                            label.setAttribute('x', (a.x + b.x) / 2);
+                            label.setAttribute('y', (a.y + b.y) / 2 - 8);
+                        }
+                    });
+                }
+                
+                /* ===== 提示浮层 ===== */
+                function clearOverlays() {
+                    els.procNote.classList.remove('show');
+                    els.packetCard.classList.remove('show');
+                    els.bubble.classList.remove('show');
+                    els.sitePanel.classList.remove('show');
+                    els.targetPanel.classList.remove('show');
+                    els.webpage.classList.remove('show');
+                    els.kindMenu.classList.remove('show');
+                    if (els.ctxMenu) els.ctxMenu.classList.remove('show');
+                    els.selectionBox.style.display = 'none';
+                }
+                function hideRtPanel() { els.rtPanel.classList.remove('show'); }
+                
+                function showNote(text, duration) {
+                    els.procNote.innerHTML = text;
+                    els.procNote.classList.add('show');
+                    clearTimeout(showNote._t);
+                    if (duration) showNote._t = setTimeout(function () { els.procNote.classList.remove('show'); }, duration);
+                }
+                function hideNote() { els.procNote.classList.remove('show'); }
+                
+                function showPacketCard(x, y, srcIp, dstIp, label) {
+                    els.packetCard.innerHTML =
+                    '<div class="p-label">' + (label || '数据包') + '</div>' +
+                    '<div>源：<span class="p-ip">' + srcIp + '</span></div>' +
+                    '<div>目标：<span class="p-ip">' + dstIp + '</span></div>';
+                    els.packetCard.style.left = (x + 58) + 'px';
+                    els.packetCard.style.top = (y + 56) + 'px';
+                    els.packetCard.classList.add('show');
+                }
+                function hidePacketCard() { els.packetCard.classList.remove('show'); }
+                
+                function bubbleOverlaps(x, y) {
+                    var bw = els.bubble.offsetWidth, bh = els.bubble.offsetHeight;
+                    var r = x + bw, b = y + bh;
+                    for (var i = 0; i < state.devices.length; i++) {
+                        var d = state.devices[i];
+                        if (!(d.x + 46 < x || d.x - 46 > r || d.y + 45 < y || d.y - 45 > b)) return true;
+                    }
+                    return false;
+                }
+                function bubbleScanY(yBase, cx, below) {
+                    var bw = els.bubble.offsetWidth, bh = els.bubble.offsetHeight;
+                    var stageRect = els.stage.getBoundingClientRect();
+                    var W = stageRect.width, H = stageRect.height;
+                    var yy = Math.max(8, Math.min(H - bh - 8, yBase));
+                    if (yy < 8 || yy + bh > H - 8) return null;
+                    for (var off = 0; off <= 280; off += 10) {
+                        var xs = [cx + off, cx - off];
+                        for (var j = 0; j < 2; j++) {
+                            var xx = Math.max(8, Math.min(W - bw - 8, xs[j]));
+                            if (xx < 8 || xx + bw > W - 8) continue;
+                            if (!bubbleOverlaps(xx, yy)) return { x: xx, y: yy, below: below };
+                        }
+                    }
+                    return null;
+                }
+                function showBubble(dev, html, duration, forceBelow) {
+                    els.bubble.innerHTML = html;
+                    els.bubble.classList.add('show');
+                    els.bubble.classList.remove('below');
+                    els.bubble.style.setProperty('--ax', '50%');
+                    var stageRect = els.stage.getBoundingClientRect();
+                    var W = stageRect.width, H = stageRect.height;
+                    var bw = els.bubble.offsetWidth, bh = els.bubble.offsetHeight;
+                    var cx = Math.max(8, Math.min(W - bw - 8, dev.x - bw / 2));
+                    var chosen = null;
+                    if (!forceBelow) chosen = bubbleScanY(dev.y - bh - 55, cx, false);
+                    if (!chosen) chosen = bubbleScanY(dev.y + 55, cx, true);
+                    if (!chosen) chosen = { x: cx, y: Math.max(8, Math.min(H - bh - 8, dev.y - bh - 55)), below: false };
+                    if (chosen.below) els.bubble.classList.add('below');
+                    els.bubble.style.left = chosen.x + 'px';
+                    els.bubble.style.top = chosen.y + 'px';
+                    var ax = Math.max(14, Math.min(bw - 14, dev.x - chosen.x));
+                    els.bubble.style.setProperty('--ax', ax + 'px');
+                    clearTimeout(showBubble._t);
+                    if (duration) showBubble._t = setTimeout(function () { els.bubble.classList.remove('show'); }, duration);
+                }
+                function hideBubble() { els.bubble.classList.remove('show'); clearTimeout(showBubble._t); }
+                
+                function showRtPanel(routerDev, matchRow) {
+                    var rows = '';
+                    if (matchRow === 'baidu') {
+                        rows = '<tr><td>192.168.1.x（交换机A直连）</td><td>交给交换机A</td><td>不是目标</td></tr>' +
+                        '<tr><td>192.168.2.x（局域网B）</td><td>交给交换机B</td><td>不是目标</td></tr>' +
+                        '<tr class="match"><td>110.242.68.66（百度服务器）</td><td>出口 → 光猫</td><td>✓ 匹配</td></tr>';
+                    } else if (matchRow === 'bili') {
+                        rows = '<tr><td>192.168.1.x（交换机A直连）</td><td>交给交换机A</td><td>不是目标</td></tr>' +
+                        '<tr><td>192.168.2.x（局域网B）</td><td>交给交换机B</td><td>不是目标</td></tr>' +
+                        '<tr class="match"><td>134.175.47.77（B站服务器）</td><td>出口 → 光猫</td><td>✓ 匹配</td></tr>';
+                    }
+                    els.rtPanel.innerHTML =
+                    '<h4><span class="rt-ico">路由器 · 路由表（找路）</span></h4>' +
+                    '<table class="rt-table"><tr><th>目标网络</th><th>下一跳</th><th>匹配</th></tr>' + rows + '</table>' +
+                    '<div class="rt-note">路由器拿着数据包上的目标IP，在路由表里一条条比对，找到匹配的那一行，就按那条路把数据包送出去。</div>';
+                    els.rtPanel.classList.add('show');
+                    var pw = 380, ph = els.rtPanel.offsetHeight;
+                    var stageRect = els.stage.getBoundingClientRect();
+                    var SW = stageRect.width, SH = stageRect.height;
+                    els.rtPanel.style.left = Math.max(12, SW - pw - 12) + 'px';
+                    els.rtPanel.style.top = Math.max(12, SH - ph - 12) + 'px';
+                }
+                
+                /* ===== 上网全流程（搭建模式） ===== */
+                /* 上网前检查连接规则 */
+                function validateNetwork() {
+                    var errors = [];
+                    var getLinksOf = function(devId) {
+                        return state.links.filter(function(l) { return l.a === devId || l.b === devId; });
+                    };
+                    var otherEnd = function(link, devId) {
+                        return link.a === devId ? link.b : link.a;
+                    };
+                    var typeOf = function(devId) { var d = getDev(devId); return d ? d.type : null; };
+                    var isWirelessType = function(t) { return t === 'phone' || t === 'tablet'; };
+                    
+                    state.devices.forEach(function(dev) {
+                        var links = getLinksOf(dev.id);
+                        links.forEach(function(l) {
+                            var otherType = typeOf(otherEnd(l, dev.id));
+                            /* 光纤只能光猫↔互联网 */
+                            if (l.kind === 'fiber') {
+                                var pair = [dev.type, otherType].sort().join(',');
+                                if (pair !== 'internet,modem') {
+                                    errors.push('光纤只能连接光猫和互联网，现在是' + DEVICES[dev.type].name + '和' + (otherType ? DEVICES[otherType].name : '?') + '之间用了光纤。');
+                                }
+                            }
+                            /* 手机/平板不能网线连接 */
+                            if (l.kind === 'wire' && (isWirelessType(dev.type) || isWirelessType(otherType))) {
+                                var wireOther = isWirelessType(dev.type) ? otherType : dev.type;
+                                errors.push('手机/平板不能用网线连接，应该通过WiFi连到无线AP。');
+                            }
+                            /* 互联网不能网线连接 */
+                            if (l.kind === 'wire' && (dev.type === 'internet' || otherType === 'internet')) {
+                                errors.push('互联网必须通过光纤连接光猫，不能直接连网线。');
+                            }
+                            /* WiFi必须连AP */
+                            if (l.kind === 'wifi' && dev.type !== 'ap' && otherType !== 'ap') {
+                                errors.push('WiFi必须连到无线AP，现在' + DEVICES[dev.type].name + '直接用WiFi连了' + (otherType ? DEVICES[otherType].name : '?') + '。');
+                            }
+                            /* WiFi不能连互联网 */
+                            if (l.kind === 'wifi' && (dev.type === 'internet' || otherType === 'internet')) {
+                                errors.push('互联网不能用WiFi连接。');
+                            }
+                        });
+                    });
+                    
+                    /* 路由器LAN口限制 */
+                    state.devices.forEach(function(dev) {
+                        if (dev.type !== 'router') return;
+                        var lanCount = 0;
+                        getLinksOf(dev.id).forEach(function(l) {
+                            var oType = typeOf(otherEnd(l, dev.id));
+                            if (oType && oType !== 'modem' && l.kind !== 'wifi') lanCount++;
+                        });
+                        if (lanCount > 3) {
+                            errors.push('路由器接了' + lanCount + '个本地设备，LAN口最多3个，需要减少一个。');
+                        }
+                    });
+                    
+                    /* 去重 */
+                    var unique = [];
+                    errors.forEach(function(e) { if (unique.indexOf(e) === -1) unique.push(e); });
+                    return unique;
+                }
+                
+                function startVisit(site) {
+                    if (state.sendRunning || pendingPcId === null) return;
+                    var pcId = pendingPcId;
+                    closeSitePanel();
+                    var pcDev = getDev(pcId);
+                    if (!pcDev) return;
+                    
+                    /* 先检查连接规则 */
+                    var ruleErrors = validateNetwork();
+                    if (ruleErrors.length > 0) {
+                        showToast('bad', '网络有问题：' + ruleErrors[0]);
+                        setStatus('网络检查发现问题：' + ruleErrors[0] + (ruleErrors.length > 1 ? '（共' + ruleErrors.length + '个问题）' : ''));
+                        return;
+                    }
+                    
+                    var path = findPath(pcId);
+                    if (path === null) {
+                        var reachable = getReachable(pcId);
+                        showToast('bad', analyzeBlock(reachable));
+                        return;
+                    }
+                    state.sendRunning = true;
+                    setTool('select');
+                    showNote('在浏览器输入网址：<b>' + site.url + '</b>，看看数据经过哪些设备');
+                    setTimeout(function () {
+                        hideNote();
+                        animateHops(pcId, site, function () {
+                            var serverDev = getDev(path[path.length - 1]);
+                            if (serverDev) showBubble(serverDev, '数据到达<b>' + site.name + '</b>！网页开始加载。', 2500);
+                            showNote('网页打开成功！数据沿着你搭的网络传过去了。', 2800);
+                            setTimeout(function () {
+                                showToast('ok', '网页打开成功！看看数据经过了哪些设备？');
+                                state.sendRunning = false;
+                            }, 3000);
+                        });
+                    }, 1800);
+                }
+                
+                function animateHops(pcId, site, done) {
+                    var path = findPath(pcId);
+                    if (!path || path.length < 2) { done(); return; }
+                    var t = 0, step = 1500;
+                    for (var i = 0; i < path.length - 1; i++) {
+                        (function (idx) {
+                            setTimeout(function () {
+                                var aId = path[idx], bId = path[idx + 1];
+                                var devA = getDev(aId), devB = getDev(bId);
+                                var link = state.links.filter(function (l) {
+                                    return (l.a === aId && l.b === bId) || (l.a === bId && l.b === aId);
+                                })[0];
+                                if (!link || !devA || !devB) return;
+                                if (idx === 0) {
+                                    showBubble(devA, '数据出发！沿着网线向网络里走去。', 1400);
+                                } else {
+                                    var prevDev = getDev(path[idx - 1]);
+                                    if (prevDev) showBubble(devB, '从<b>' + (prevDev.label || DEVICES[prevDev.type].name) + '</b>传来数据，继续前进。', 1300);
+                                }
+                                var devElB = els.stage.querySelector('.dev[data-id="' + devB.id + '"]');
+                                if (devElB) devElB.classList.add('flash-ok');
+                                var fromEl = els.stage.querySelector('.dev[data-id="' + devA.id + '"]');
+                                if (fromEl) fromEl.classList.add('flash-ok');
+                                var line = els.linksSvg.querySelector('line[data-link="' + link.id + '"]');
+                                if (line) line.classList.add('ok');
+                                animatePktOnLine(link);
+                                if (idx < path.length - 2) {
+                                    setTimeout(function () { showDeviceExplain(devB, site); }, 1100);
+                                }
+                                setTimeout(function () {
+                                    if (devElB) devElB.classList.remove('flash-ok');
+                                    if (fromEl) fromEl.classList.remove('flash-ok');
+                                    if (line) line.classList.remove('ok');
+                                }, 1300);
+                            }, t);
+                            t += step;
+                        })(i);
+                    }
+                    setTimeout(function () { done(); }, t + 500);
+                }
+                
+                function showDeviceExplain(dev, site) {
+                    var html = '';
+                    switch (dev.type) {
+                        case 'switch': html = '<b>交换机</b>把数据转发给下一个设备。'; break;
+                        case 'router': html = '<b>路由器</b>把数据送出局域网，送往互联网。'; break;
+                        case 'modem': html = '<b>光猫</b>把电信号变成<b>光信号</b>，送上光纤。'; break;
+                        case 'ap': html = '<b>无线AP</b>把数据通过WiFi传给手机/平板。'; break;
+                        default: html = '数据继续前进。';
+                    }
+                    showBubble(dev, html, 2300);
+                }
+                
+                /* ===== 路径查找（搭建模式） ===== */
+                function findPath(fromId) {
+                    var adj = buildAdj();
+                    var prev = {}, visited = {};
+                    var queue = [fromId];
+                    visited[fromId] = true;
+                    while (queue.length) {
+                        var cur = queue.shift();
+                        if (getDev(cur).type === 'internet') {
+                            var path = [], node = cur;
+                            while (node !== undefined) { path.unshift(node); node = prev[node]; }
+                            return path;
+                        }
+                        (adj[cur] || []).forEach(function (nb) {
+                            if (!visited[nb]) { visited[nb] = true; prev[nb] = cur; queue.push(nb); }
+                        });
+                    }
+                    return null;
+                }
+                function buildAdj() {
+                    var adj = {};
+                    state.devices.forEach(function (d) { adj[d.id] = []; });
+                    state.links.forEach(function (l) { adj[l.a].push(l.b); adj[l.b].push(l.a); });
+                    return adj;
+                }
+                function getReachable(fromId) {
+                    var adj = buildAdj(), seen = {}, queue = [fromId];
+                    seen[fromId] = true;
+                    while (queue.length) {
+                        var cur = queue.shift();
+                        (adj[cur] || []).forEach(function (nb) { if (!seen[nb]) { seen[nb] = true; queue.push(nb); } });
+                    }
+                    return Object.keys(seen).map(Number);
+                }
+                function analyzeBlock(ids) {
+                    var types = ids.map(function (id) { return getDev(id).type; });
+                    var has = function (t) { return types.indexOf(t) !== -1; };
+                    var name = function (t) { return DEVICES[t].name; };
+                    if (types.length === 1) return '这个设备还是孤零零的，先把它连到交换机或路由器上。';
+                    if (!has('router')) {
+                        if (has('switch')) return '信息到了' + name('switch') + '就停下了：交换机只能让局域网里的设备互通，没有' + name('router') + '，信息出不了门。';
+                        return '还缺一个' + name('router') + '，它负责带信息走出局域网。';
+                    }
+                    if (!has('modem')) return '信息到了' + name('router') + '就停下了：路由器还需要连接' + name('modem') + '，把信号送上光纤。';
+                    if (!has('internet')) return name('modem') + '已经在了，但还没接到' + name('internet') + '，把最后一根线连上吧。';
+                    return '网络还没连完整，检查一下哪里断了。';
+                }
+                
+                /* ===== 通信模式：点赞发送（自动路由） ===== */
+                function parseAddr(addr) {
+                    if (!addr) return null;
+                    var parts = addr.trim().split('.');
+                    if (parts.length === 2) return { net: parts[0], host: parts[1], full: addr.trim() };
+                    if (parts.length === 1) return { net: '0', host: parts[0], full: addr.trim() };
+                    return null;
+                }
+                
+                function startLikeSend(fromId, toId) {
+                    if (state.sendRunning) return;
+                    var fromDev = getDev(fromId), toDev = getDev(toId);
+                    if (!fromDev || !toDev) return;
+                    var fromAddr = parseAddr(fromDev.addr), toAddr = parseAddr(toDev.addr);
+                    if (!fromAddr) { showToast('bad', '发送方电脑还没有设置编号，双击它设置编号。'); return; }
+                    if (!toAddr) { showToast('bad', '目标电脑还没有设置编号，双击它设置编号。'); return; }
+                    
+                    /* 检查编号冲突 */
+                    var conflict = state.devices.some(function (d) {
+                        return d.type === 'pc' && d.id !== fromId && d.addr && d.addr.trim() === fromDev.addr.trim();
+                    });
+                    if (conflict) { showToast('bad', '编号冲突！有两台电脑用了同一个编号「' + fromDev.addr + '」，电脑不知道该发给谁。'); return; }
+                    
+                    state.sendRunning = true;
+                    setTool('select');
+                    showNote('电脑 ' + fromAddr.full + ' 向电脑 ' + toAddr.full + ' 发送点赞 👍');
+                    
+                    /* 查找路径 */
+                    var path = findCommPath(fromId, toId);
+                    if (!path) {
+                        setTimeout(function () {
+                            showToast('bad', '点赞送不到！检查网络连接和电脑编号是否正确。');
+                            state.sendRunning = false;
+                            hideNote();
+                        }, 800);
+                        return;
+                    }
+                    
+                    /* 逐跳动画 */
+                    var t = 0;
+                    for (var i = 0; i < path.length - 1; i++) {
+                        (function (idx) {
+                            setTimeout(function () {
+                                var a = getDev(path[idx]), b = getDev(path[idx + 1]);
+                                if (!a || !b) return;
+                                var link = state.links.filter(function (l) {
+                                    return (l.a === a.id && l.b === b.id) || (l.a === b.id && l.b === a.id);
+                                })[0];
+                                if (link) {
+                                    var line = els.linksSvg.querySelector('line[data-link="' + link.id + '"]');
+                                    if (line) line.classList.add('ok');
+                                    animatePktOnLine(link);
+                                }
+                                var elA = els.stage.querySelector('.dev[data-id="' + a.id + '"]');
+                                var elB = els.stage.querySelector('.dev[data-id="' + b.id + '"]');
+                                if (elA) elA.classList.add('flash-ok');
+                                if (elB) elB.classList.add('flash-ok');
+                                
+                                if (b.type === 'switch') {
+                                    showBubble(b, '到了<b>交换机</b>：看了看目标编号，' + (fromAddr.net === toAddr.net ? '在同一个网络里，直接转发给目标电脑！' : '不在这个网络，发给路由器！'), 1500);
+                                } else if (b.type === 'router') {
+                                    showBubble(b, '到了<b>路由器</b>：查目标网络号 <b>' + toAddr.net + '</b>，找到匹配的接口，转发出去！', 1500);
+                                }
+                                
+                                setTimeout(function () {
+                                    if (elA) elA.classList.remove('flash-ok');
+                                    if (elB) elB.classList.remove('flash-ok');
+                                    if (link) {
+                                        var line2 = els.linksSvg.querySelector('line[data-link="' + link.id + '"]');
+                                        if (line2) line2.classList.remove('ok');
+                                    }
+                                }, 1200);
+                            }, t);
+                            t += 1400;
+                        })(i);
+                    }
+                    
+                    /* 到达目标 */
+                    setTimeout(function () {
+                        showLikePopup(toDev);
+                        showBubble(toDev, '点赞送达！电脑 <b>' + toAddr.full + '</b> 收到了来自 <b>' + fromAddr.full + '</b> 的点赞 👍', 2500);
+                        showToast('ok', '点赞成功送达！经过了 ' + (path.length - 1) + ' 跳转发。');
+                        state.sendRunning = false;
+                        hideNote();
+                    }, t + 400);
+                }
+                
+                function showLikePopup(dev) {
+                    var el = document.createElement('div');
+                    el.className = 'like-popup';
+                    el.textContent = '👍';
+                    el.style.left = dev.x + 'px';
+                    el.style.top = dev.y + 'px';
+                    els.stage.appendChild(el);
+                    setTimeout(function () { el.remove(); }, 1600);
+                }
+                
+                /* 通信模式路径查找：基于编号网络号自动路由 */
+                function findCommPath(fromId, toId) {
+                    var fromDev = getDev(fromId), toDev = getDev(toId);
+                    var fromAddr = parseAddr(fromDev.addr), toAddr = parseAddr(toDev.addr);
+                    if (!fromAddr || !toAddr) return null;
+                    
+                    var adj = buildAdj();
+                    var sameNet = fromAddr.net === toAddr.net;
+                    
+                    if (sameNet) {
+                        /* 同一网络：源 → 交换机 → 目标（如果有交换机直连） */
+                        var fromSw = findConnected(fromId, 'switch', adj);
+                        var toSw = findConnected(toId, 'switch', adj);
+                        if (fromSw && toSw && fromSw === toSw) {
+                            return [fromId, fromSw, toId];
+                        }
+                        /* 直连 */
+                        if (adj[fromId].indexOf(toId) !== -1) return [fromId, toId];
+                        return null;
+                    }
+                    
+                    /* 不同网络：源 → 交换机 → 路由器 → 交换机 → 目标 */
+                    var fromSwitch = findConnected(fromId, 'switch', adj);
+                    var toSwitch = findConnected(toId, 'switch', adj);
+                    if (!fromSwitch || !toSwitch) return null;
+                    
+                    /* 找连接两个交换机的路由器 */
+                    var fromRouters = (adj[fromSwitch] || []).filter(function (id) { return getDev(id).type === 'router'; });
+                    var toRouters = (adj[toSwitch] || []).filter(function (id) { return getDev(id).type === 'router'; });
+                    var commonRouter = null;
+                    for (var i = 0; i < fromRouters.length; i++) {
+                        if (toRouters.indexOf(fromRouters[i]) !== -1) { commonRouter = fromRouters[i]; break; }
+                    }
+                    if (!commonRouter) {
+                        /* 尝试通过多跳路由器（简化：BFS找路由器间路径） */
+                        var routerPath = findRouterPath(fromSwitch, toSwitch, adj);
+                        if (routerPath) {
+                            return [fromId, fromSwitch].concat(routerPath).concat([toSwitch, toId]);
+                        }
+                        return null;
+                    }
+                    return [fromId, fromSwitch, commonRouter, toSwitch, toId];
+                }
+                
+                function findConnected(devId, type, adj) {
+                    var neighbors = adj[devId] || [];
+                    for (var i = 0; i < neighbors.length; i++) {
+                        if (getDev(neighbors[i]).type === type) return neighbors[i];
+                    }
+                    return null;
+                }
+                
+                function findRouterPath(fromSw, toSw, adj) {
+                    /* BFS from fromSw through routers to toSw */
+                    var queue = [[fromSw]], visited = {};
+                    visited[fromSw] = true;
+                    while (queue.length) {
+                        var path = queue.shift();
+                        var cur = path[path.length - 1];
+                        if (cur === toSw) return path.slice(1, -1); // 中间的路由器
+                        (adj[cur] || []).forEach(function (nb) {
+                            if (visited[nb]) return;
+                            var nd = getDev(nb);
+                            if (nd.type === 'router' || nb === toSw) {
+                                visited[nb] = true;
+                                queue.push(path.concat([nb]));
+                            }
+                        });
+                    }
+                    return null;
+                }
+                
+                /* ===== 动画工具 ===== */
+                function animatePktBetween(devA, devB, done) {
+                    var x1 = devA.x, y1 = devA.y, x2 = devB.x, y2 = devB.y;
+                    var link = null;
+                    state.links.forEach(function (l) {
+                        if ((l.a === devA.id && l.b === devB.id) || (l.a === devB.id && l.b === devA.id)) link = l;
+                    });
+                    var lineEl = null;
+                    if (link) lineEl = els.linksSvg.querySelector('line[data-link="' + link.id + '"]');
+                    if (lineEl) lineEl.classList.add('ok');
+                    var elA = els.stage.querySelector('.dev[data-id="' + devA.id + '"]');
+                    var elB = els.stage.querySelector('.dev[data-id="' + devB.id + '"]');
+                    if (elA) elA.classList.add('flash-ok');
+                    if (elB) elB.classList.add('flash-ok');
+                    var dur = 0.55;
+                    var trail = [
+                    { delay: 0, r: 8, fill: '#E8720C', op: 1 },
+                    { delay: 0.13, r: 5, fill: '#F5A94E', op: 0.55 },
+                    { delay: 0.26, r: 4, fill: '#F5A94E', op: 0.35 },
+                    { delay: 0.39, r: 3, fill: '#F5A94E', op: 0.2 }
+                    ];
+                    trail.forEach(function (t) {
+                        var circle = document.createElementNS(svgNS, 'circle');
+                        circle.setAttribute('r', t.r);
+                        circle.setAttribute('fill', t.fill);
+                        circle.setAttribute('opacity', t.op);
+                        var anim = document.createElementNS(svgNS, 'animateMotion');
+                        anim.setAttribute('dur', dur + 's');
+                        anim.setAttribute('begin', t.delay + 's');
+                        anim.setAttribute('fill', 'freeze');
+                        anim.setAttribute('path', 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2);
+                        circle.appendChild(anim);
+                        els.linksSvg.appendChild(circle);
+                        setTimeout(function () { circle.remove(); }, (dur + t.delay + 0.15) * 1000);
+                    });
+                    setTimeout(function () {
+                        if (lineEl) lineEl.classList.remove('ok');
+                        if (elA) elA.classList.remove('flash-ok');
+                        if (elB) elB.classList.remove('flash-ok');
+                        if (done) done();
+                    }, (dur + 0.5) * 1000);
+                }
+                
+                function animatePktOnLine(link) {
+                    var line = els.linksSvg.querySelector('line[data-link="' + link.id + '"]');
+                    if (!line) return;
+                    var x1 = Number(line.getAttribute('x1')), y1 = Number(line.getAttribute('y1'));
+                    var x2 = Number(line.getAttribute('x2')), y2 = Number(line.getAttribute('y2'));
+                    var circle = document.createElementNS(svgNS, 'circle');
+                    circle.setAttribute('r', '6');
+                    circle.setAttribute('fill', '#E8720C');
+                    var anim = document.createElementNS(svgNS, 'animateMotion');
+                    anim.setAttribute('dur', '0.7s');
+                    anim.setAttribute('repeatCount', '1');
+                    anim.setAttribute('path', 'M' + x1 + ',' + y1 + ' L' + x2 + ',' + y2);
+                    circle.appendChild(anim);
+                    els.linksSvg.appendChild(circle);
+                    setTimeout(function () { circle.remove(); }, 900);
+                }
+                
+                function demoAnimatePath(ids, done) {
+                    var t = 0, stepMs = 620, last = ids.length - 1;
+                    for (var i = 0; i < last; i++) {
+                        (function (i) {
+                            setTimeout(function () {
+                                var a = getDev(ids[i]), b = getDev(ids[i + 1]);
+                                if (a && b) animatePktBetween(a, b);
+                            }, t);
+                            t += stepMs;
+                        })(i);
+                    }
+                    setTimeout(function () { if (done) done(); }, t + stepMs + 500);
+                }
+                
+                function flashDev(dev) {
+                    var el = els.stage.querySelector('.dev[data-id="' + dev.id + '"]');
+                    if (el) el.classList.add('flash-ok');
+                }
+                function flashOff(dev) {
+                    var el = els.stage.querySelector('.dev[data-id="' + dev.id + '"]');
+                    if (el) el.classList.remove('flash-ok');
+                }
+                function clearFlash() {
+                    els.stage.querySelectorAll('.dev.flash-ok').forEach(function (d) { d.classList.remove('flash-ok'); });
+                }
+                
+                function findDevByIp(ip) {
+                    for (var i = 0; i < state.devices.length; i++) {
+                        if (state.devices[i].ip === ip) return state.devices[i];
+                    }
+                    return null;
+                }
+                
+                /* ===== 演示模式 ===== */
+                function loadDemoScene() {
+                    state.devices = []; state.links = []; state.connectFrom = null;
+                    state.nextId = 1; state.sendRunning = false; state.demoStep = 0;
+                    clearOverlays(); hideRtPanel(); els.webpage.classList.remove('show');
+                    els.btnNext.disabled = false; clearDeviceDom();
+                    var W = els.stage.clientWidth, H = els.stage.clientHeight;
+                    state.devices.push({ id: state.nextId++, type: 'pc', x: Math.round(W * 0.06), y: Math.round(H * 0.20), ip: '192.168.1.10', label: '小明电脑' });
+                    state.devices.push({ id: state.nextId++, type: 'pc', x: Math.round(W * 0.06), y: Math.round(H * 0.40), ip: '192.168.1.11', label: '同学电脑' });
+                    state.devices.push({ id: state.nextId++, type: 'pc', x: Math.round(W * 0.06), y: Math.round(H * 0.60), ip: '192.168.1.12', label: '同学电脑' });
+                    state.devices.push({ id: state.nextId++, type: 'pc', x: Math.round(W * 0.06), y: Math.round(H * 0.80), ip: '192.168.1.13', label: '同学电脑' });
+                    state.devices.push({ id: state.nextId++, type: 'switch', x: Math.round(W * 0.20), y: Math.round(H * 0.44), label: '交换机A' });
+                    state.devices.push({ id: state.nextId++, type: 'router', x: Math.round(W * 0.45), y: Math.round(H * 0.36), ip: '内 192.168.1.1' });
+                    state.devices.push({ id: state.nextId++, type: 'switch', x: Math.round(W * 0.45), y: Math.round(H * 0.56), label: '交换机B' });
+                    state.devices.push({ id: state.nextId++, type: 'pc', x: Math.round(W * 0.36), y: Math.round(H * 0.74), ip: '192.168.2.10', label: 'B区电脑' });
+                    state.devices.push({ id: state.nextId++, type: 'pc', x: Math.round(W * 0.55), y: Math.round(H * 0.74), ip: '192.168.2.11', label: 'B区电脑' });
+                    state.devices.push({ id: state.nextId++, type: 'modem', x: Math.round(W * 0.64), y: Math.round(H * 0.36), ip: '100.64.0.2' });
+                    state.devices.push({ id: state.nextId++, type: 'internet', x: Math.round(W * 0.80), y: Math.round(H * 0.36) });
+                    state.devices.push({ id: state.nextId++, type: 'web', x: Math.round(W * 0.92), y: Math.round(H * 0.22), ip: '110.242.68.66', label: '百度服务器' });
+                    state.devices.push({ id: state.nextId++, type: 'web', x: Math.round(W * 0.92), y: Math.round(H * 0.48), ip: '134.175.47.77', label: 'B站服务器' });
+                    state.devices.push({ id: state.nextId++, type: 'dns', x: Math.round(W * 0.82), y: Math.round(H * 0.62), ip: '114.114.114.114' });
+                    addLinkRaw(1, 5, 'wire'); addLinkRaw(2, 5, 'wire');
+                    addLinkRaw(3, 5, 'wire'); addLinkRaw(4, 5, 'wire');
+                    addLinkRaw(8, 7, 'wire'); addLinkRaw(9, 7, 'wire');
+                    addLinkRaw(5, 6, 'wire'); addLinkRaw(7, 6, 'wire');
+                    addLinkRaw(6, 10, 'wire'); addLinkRaw(10, 11, 'fiber');
+                    addLinkRaw(11, 12, 'wire'); addLinkRaw(11, 13, 'wire');
+                    addLinkRaw(11, 14, 'wire');
+                    renderAll();
+                    setSteps(0);
+                    setStatus('演示模式：点"开始演示"，看路由器怎么找路。');
+                }
+                
+                function addLinkRaw(aId, bId, kind) {
+                    state.links.push({ id: state.nextId++, a: aId, b: bId, kind: kind || 'wire', portA: 0, portB: 0 });
+                }
+                
+                function displayDemoState(s) {
+                    clearFlash();
+                    document.querySelectorAll('.dev.selected').forEach(function (d) { d.classList.remove('selected'); });
+                    hideRtPanel(); els.webpage.classList.remove('show'); hidePacketCard();
+                    var pc = getDevByType('pc'), sw = getDevByType('switch'), rt = getDevByType('router');
+                    var baidu = findDevByIp('110.242.68.66'), dnsSrv = getDevByType('dns');
+                    if (s === 1) { setSteps(1); showBubble(pc, '小明打开浏览器，输入网址 <b>www.baidu.com</b>，按回车。'); setStatus('第1步：小明输入网址。点击"下一步"。'); }
+                    else if (s === 2) { setSteps(2); flashDev(pc); showBubble(pc, 'DNS服务器查到：<b>www.baidu.com</b> 的IP是 <b>110.242.68.66</b>！'); setStatus('第2步：DNS把域名翻译成IP。'); }
+                    else if (s === 3) { setSteps(3); flashDev(pc); showBubble(pc, '打包成<b>数据包</b>：源IP <b>192.168.1.10</b>，目标IP <b>110.242.68.66</b>。'); showPacketCard(pc.x, pc.y, '192.168.1.10', '110.242.68.66', '数据包 · 出发'); setStatus('第3步：打包数据包。'); }
+                    else if (s === 4) { setSteps(4); flashDev(sw); showBubble(sw, '到了<b>交换机A</b>：目标IP不在局域网，转发给<b>路由器</b>。'); setStatus('第4步：交换机转发。'); }
+                    else if (s === 5) { setSteps(4); flashDev(rt); showRtPanel(rt, 'baidu'); showBubble(rt, '到了<b>路由器</b>！查<b>路由表</b>：匹配百度服务器，走互联网出口！'); setStatus('第5步：路由器查路由表找路。'); }
+                    else if (s === 6) { setSteps(5); flashDev(baidu); showBubble(baidu, '数据包到达<b>百度服务器</b>！'); setStatus('第6步：到达服务器。'); }
+                    else if (s === 7) { setSteps(6); flashDev(baidu); showBubble(baidu, '百度服务器把网页打包成<b>回程数据包</b>，按原路寄回。'); setStatus('第7步：服务器回传网页数据。'); }
+                    else if (s === 8) { setSteps(6); flashDev(pc); showWebpage(); showBubble(pc, '回程数据包到达<b>小明的电脑</b>！浏览器显示出百度首页。'); setStatus('第8步：网页数据回到小明电脑。'); }
+                    else if (s === 9) { setSteps(0); hideBubble(); showToast('ok', '演示完成！'); setStatus('演示结束。'); }
+                }
+                
+                function playDemoStep(s, done) {
+                    var pc = getDevByType('pc'), sw = getDevByType('switch'), rt = getDevByType('router');
+                    var modem = getDevByType('modem'), internet = getDevByType('internet');
+                    var baidu = findDevByIp('110.242.68.66'), dnsSrv = getDevByType('dns');
+                    if (s === 1 || s === 3 || s === 7 || s === 9) { displayDemoState(s); done(); return; }
+                    if (s === 2) {
+                        demoAnimatePath([pc.id, sw.id, rt.id, modem.id, internet.id, dnsSrv.id], function () {
+                            flashDev(dnsSrv);
+                            showBubble(dnsSrv, 'DNS查到：<b>www.baidu.com</b> → <b>110.242.68.66</b>，送回给小明。');
+                            setTimeout(function () { hideBubble(); flashOff(dnsSrv); demoAnimatePath([dnsSrv.id, internet.id, modem.id, rt.id, sw.id, pc.id], function () { displayDemoState(2); done(); }); }, 1100);
+                        });
+                        return;
+                    }
+                    if (s === 4) { demoAnimatePath([pc.id, sw.id], function () { displayDemoState(4); done(); }); return; }
+                    if (s === 5) { demoAnimatePath([sw.id, rt.id], function () { displayDemoState(5); done(); }); return; }
+                    if (s === 6) { demoAnimatePath([rt.id, modem.id, internet.id, baidu.id], function () { displayDemoState(6); done(); }); return; }
+                    if (s === 8) { demoAnimatePath([baidu.id, internet.id, modem.id, rt.id, sw.id, pc.id], function () { displayDemoState(8); done(); }); return; }
+                    displayDemoState(s); done();
+                }
+                
+                function startDemo() {
+                    if (state.mode !== 'demo' || state.demoPlaying) return;
+                    state.demoStep = 0; setTool('select');
+                    clearOverlays(); hideRtPanel(); els.webpage.classList.remove('show');
+                    els.btnNext.disabled = false; els.btnPrev.disabled = false;
+                    showToast('info', '点"下一步"，一步步看寻址过程。');
+                    nextDemoStep();
+                }
+                
+                function nextDemoStep() {
+                    if (state.mode !== 'demo' || state.demoPlaying) return;
+                    if (state.demoStep >= 9) return;
+                    state.demoStep++; state.demoPlaying = true;
+                    els.btnNext.disabled = true; els.btnPrev.disabled = true;
+                    hideBubble();
+                    playDemoStep(state.demoStep, function () {
+                        state.demoPlaying = false;
+                        if (state.demoStep >= 9) els.btnNext.disabled = true;
+                        else els.btnNext.disabled = false;
+                        els.btnPrev.disabled = false;
+                    });
+                }
+                
+                function prevDemoStep() {
+                    if (state.mode !== 'demo' || state.demoPlaying) return;
+                    if (state.demoStep <= 1) return;
+                    state.demoStep--;
+                    els.btnNext.disabled = true; els.btnPrev.disabled = true;
+                    hideBubble();
+                    displayDemoState(state.demoStep);
+                    els.btnNext.disabled = false; els.btnPrev.disabled = false;
+                }
+                
+                function showWebpage() {
+                    var stageRect = els.stage.getBoundingClientRect();
+                    var W = stageRect.width, H = stageRect.height;
+                    els.webpage.style.left = Math.max(12, Math.round(W / 2 - 150)) + 'px';
+                    els.webpage.classList.add('show');
+                    var wh = els.webpage.offsetHeight;
+                    els.webpage.style.top = Math.max(12, Math.round(H / 2 - wh / 2)) + 'px';
+                }
+                
+                /* ===== 启动 ===== */
+                document.getElementById('btnNext') && (function () {
+                    document.getElementById('btnNext').addEventListener('click', function () { nextDemoStep(); });
+                })();
+                document.getElementById('btnPrev') && (function () {
+                    document.getElementById('btnPrev').addEventListener('click', function () { prevDemoStep(); });
+                })();
+                
+                init();
+                bindStageDrag();
+            })();
+            
+            window.addEventListener('beforeunload', function (e) {
+                e.preventDefault();
+            });
+        </script>
+    </body>
+</html>
