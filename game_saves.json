@@ -25,5 +25,32 @@
     "dead": {
       "oasis-monster-5": 1
     }
+  },
+  "迪迪7": {
+    "v": 2,
+    "day": 2,
+    "region": "oasis",
+    "hp": 96,
+    "food": 74.92188399999993,
+    "water": 72.01563600000007,
+    "stamina": 26,
+    "px": 24,
+    "pz": 26.449980000000018,
+    "yaw": 0.9448399999999944,
+    "inv": {
+      "wood": 0,
+      "stone": 0,
+      "core": 1,
+      "berry": 0,
+      "water": 34
+    },
+    "lit": {
+      "oasis": false,
+      "desert": false,
+      "frost": false
+    },
+    "dead": {
+      "oasis-monster-5": 1
+    }
   }
 }
