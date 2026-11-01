@@ -52,5 +52,51 @@
     "dead": {
       "oasis-monster-5": 1
     }
+  },
+  "YY202509_袁崇理": {
+    "v": 2,
+    "day": 13,
+    "region": "oasis",
+    "hp": 47.170500000000075,
+    "food": 0,
+    "water": 0,
+    "stamina": 28,
+    "px": 14.781196595067989,
+    "pz": 18.29760042572139,
+    "yaw": -4.625020000000004,
+    "inv": {
+      "wood": 16,
+      "stone": 6,
+      "core": 2,
+      "berry": 7,
+      "water": 340
+    },
+    "lit": {
+      "oasis": false,
+      "desert": false,
+      "frost": false
+    },
+    "dead": {
+      "oasis-monster-5": 1,
+      "oasis-berry-26": 1,
+      "oasis-berry-33": 1,
+      "oasis-berry-35": 1,
+      "oasis-rock-3": 1,
+      "oasis-berry-1": 1,
+      "oasis-berry-49": 1,
+      "oasis-rock-19": 1,
+      "oasis-tree-22": 1,
+      "oasis-rock-9": 1,
+      "oasis-tree-97": 1,
+      "oasis-tree-104": 1,
+      "oasis-monster-3": 1,
+      "oasis-berry-39": 1,
+      "oasis-tree-5": 1,
+      "oasis-tree-23": 1,
+      "oasis-tree-98": 1,
+      "oasis-berry-18": 1,
+      "oasis-tree-91": 1,
+      "oasis-tree-112": 1
+    }
   }
 }
