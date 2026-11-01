@@ -28,24 +28,24 @@
   },
   "超级管理员": {
     "v": 2,
-    "day": 9,
-    "region": "oasis",
+    "day": 13,
+    "region": "desert",
     "hp": 100,
-    "food": 37.87630608000452,
-    "water": 64.26984000000307,
-    "stamina": 7,
-    "px": 44.918218113918414,
-    "pz": 45.73302952191063,
-    "yaw": -11.382000000000037,
+    "food": 72.74322208000545,
+    "water": 65.32940399999772,
+    "stamina": 28,
+    "px": 24,
+    "pz": 35.64669999999998,
+    "yaw": 0,
     "inv": {
-      "wood": 76,
-      "stone": 18,
-      "core": 4,
-      "berry": 31,
-      "water": 73
+      "wood": 80,
+      "stone": 14,
+      "core": 7,
+      "berry": 23,
+      "water": 113
     },
     "lit": {
-      "oasis": false,
+      "oasis": true,
       "desert": false,
       "frost": false
     },
@@ -139,7 +139,22 @@
       "oasis-tree-53": 1,
       "oasis-berry-41": 1,
       "oasis-tree-65": 1,
-      "oasis-berry-7": 1
+      "oasis-berry-7": 1,
+      "oasis-tree-87": 1,
+      "oasis-monster-0": 1,
+      "oasis-berry-52": 1,
+      "oasis-tree-36": 1,
+      "oasis-rock-7": 1,
+      "oasis-tree-90": 1,
+      "oasis-berry-42": 1,
+      "oasis-tree-14": 1,
+      "oasis-tree-95": 1,
+      "desert-monster-11": 1,
+      "desert-monster-15": 1,
+      "desert-monster-17": 1,
+      "desert-monster-5": 1,
+      "desert-monster-6": 1,
+      "desert-monster-7": 1
     }
   }
 }
