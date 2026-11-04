@@ -10,6 +10,16 @@
         "lastMessageTime": 0,
         "lastMessage": "暂无消息",
         "unreadCount": 0
+      },
+      {
+        "chat_id": "YY202509_李荣潮_超级管理员",
+        "type": "people",
+        "name": "李荣潮",
+        "target": "YY202509_李荣潮",
+        "isPinned": false,
+        "lastMessageTime": 1793797865.610412,
+        "lastMessage": "",
+        "unreadCount": 0
       }
     ],
     "迪迪7": [
@@ -23,10 +33,23 @@
         "lastMessage": "",
         "unreadCount": 0
       }
+    ],
+    "YY202509_李荣潮": [
+      {
+        "chat_id": "YY202509_李荣潮_超级管理员",
+        "type": "people",
+        "name": "元宝0609",
+        "target": "超级管理员",
+        "isPinned": false,
+        "lastMessageTime": 1793797865.610412,
+        "lastMessage": "",
+        "unreadCount": 0
+      }
     ]
   },
   "messages": {
-    "超级管理员_迪迪7": []
+    "超级管理员_迪迪7": [],
+    "YY202509_李荣潮_超级管理员": []
   },
   "groups": {}
 }
