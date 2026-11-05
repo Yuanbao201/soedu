@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "exam_id": "52920dc8",
+    "student_name": "YY202509_迟子昂",
+    "subject_results": [
+      {
+        "subject": "语文",
+        "status": "absent",
+        "score": null,
+        "grade": null
+      }
+    ],
+    "total_score": null,
+    "fully_marked": true,
+    "submitted_at": "2026-11-05T19:58:36.558506"
+  },
+  {
+    "exam_id": "52920dc8",
+    "student_name": "YY202509_高维崧",
+    "subject_results": [
+      {
+        "subject": "语文",
+        "status": "absent",
+        "score": null,
+        "grade": null
+      }
+    ],
+    "total_score": null,
+    "fully_marked": true,
+    "submitted_at": "2026-11-05T19:58:37.283794"
+  }
+]
