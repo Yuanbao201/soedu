@@ -191,25 +191,25 @@
   },
   "超级管理员": {
     "v": 2,
-    "day": 7,
-    "region": "oasis",
-    "hp": 84,
-    "food": 91.3449835199974,
-    "water": 80.97720208000146,
-    "stamina": 28,
-    "px": 26.237189498723318,
-    "pz": 32.631129243502784,
-    "yaw": -21.93599999999996,
+    "day": 9,
+    "region": "frost",
+    "hp": 65,
+    "food": 50.84625551999874,
+    "water": 36.81209007999836,
+    "stamina": 1,
+    "px": 23.495882070024635,
+    "pz": 32.05642605092642,
+    "yaw": -0.45000000000000007,
     "inv": {
-      "wood": 52,
-      "stone": 4,
-      "core": 1,
+      "wood": 46,
+      "stone": 10,
+      "core": 6,
       "berry": 15,
-      "water": 37
+      "water": 38
     },
     "lit": {
       "oasis": true,
-      "desert": false,
+      "desert": true,
       "frost": false
     },
     "dead": {
@@ -277,7 +277,22 @@
       "oasis-monster-4": 1,
       "oasis-berry-14": 1,
       "oasis-tree-25": 1,
-      "oasis-monster-6": 1
+      "oasis-monster-6": 1,
+      "desert-monster-11": 1,
+      "desert-monster-6": 1,
+      "desert-monster-7": 1,
+      "desert-monster-20": 1,
+      "desert-monster-12": 1,
+      "desert-rock-64": 1,
+      "desert-rock-103": 1,
+      "desert-rock-41": 1,
+      "desert-rock-46": 1,
+      "desert-rock-111": 1,
+      "frost-monster-21": 1,
+      "frost-monster-14": 1,
+      "frost-rock-51": 1,
+      "frost-monster-5": 1,
+      "frost-monster-17": 1
     }
   }
 }
