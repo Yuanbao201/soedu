@@ -188,5 +188,32 @@
       "oasis-berry-60": 1,
       "oasis-tree-82": 1
     }
+  },
+  "超级管理员": {
+    "v": 2,
+    "day": 1,
+    "region": "oasis",
+    "hp": 96,
+    "food": 97.59368583999968,
+    "water": 97.05894936000053,
+    "stamina": 28,
+    "px": 24,
+    "pz": 24,
+    "yaw": 0,
+    "inv": {
+      "wood": 0,
+      "stone": 0,
+      "core": 1,
+      "berry": 0,
+      "water": 0
+    },
+    "lit": {
+      "oasis": false,
+      "desert": false,
+      "frost": false
+    },
+    "dead": {
+      "oasis-monster-5": 1
+    }
   }
 }
