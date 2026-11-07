@@ -3064,5 +3064,11 @@
     "username": "system",
     "operation": "启动",
     "status": "成功"
+  },
+  {
+    "time": "2026-11-07 19:20:14",
+    "username": "超级管理员",
+    "operation": "访问",
+    "status": "成功"
   }
 ]
