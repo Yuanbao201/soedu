@@ -28,20 +28,20 @@
   },
   "迪迪7": {
     "v": 2,
-    "day": 19,
-    "region": "frost",
-    "hp": 60,
-    "food": 82.29778912000097,
-    "water": 90.87439999999971,
+    "day": 20,
+    "region": "oasis",
+    "hp": 49,
+    "food": 52.928365120001004,
+    "water": 57.64510399999917,
     "stamina": 1,
-    "px": 33.13433310091993,
-    "pz": 36.64535992766995,
-    "yaw": -0.1492400000000605,
+    "px": 15.445785711909402,
+    "pz": 28.8211168417339,
+    "yaw": -1.5966599999999396,
     "inv": {
       "wood": 126,
-      "stone": 40,
-      "core": 14,
-      "berry": 0,
+      "stone": 44,
+      "core": 17,
+      "berry": 2,
       "water": 72
     },
     "lit": {
@@ -217,7 +217,14 @@
       "desert-monster-12": 1,
       "frost-monster-21": 1,
       "frost-monster-14": 1,
-      "frost-rock-62": 1
+      "frost-rock-62": 1,
+      "oasis-berry-42": 1,
+      "frost-rock-51": 1,
+      "frost-monster-5": 1,
+      "frost-monster-17": 1,
+      "frost-monster-31": 1,
+      "frost-rock-74": 1,
+      "oasis-berry-21": 1
     }
   }
 }
