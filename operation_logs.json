@@ -3040,5 +3040,11 @@
     "username": "迪迪7",
     "operation": "访问",
     "status": "成功"
+  },
+  {
+    "time": "2026-11-07 17:58:32",
+    "username": "system",
+    "operation": "启动",
+    "status": "成功"
   }
 ]
