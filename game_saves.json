@@ -28,20 +28,20 @@
   },
   "迪迪7": {
     "v": 2,
-    "day": 17,
+    "day": 18,
     "region": "desert",
     "hp": 68,
-    "food": 21.035809120000536,
-    "water": 52.750004000000125,
-    "stamina": 2,
-    "px": 24.28994226581494,
-    "pz": 24.50613121985958,
-    "yaw": -3.862819999999973,
+    "food": 20.766601120000562,
+    "water": 18.420971999999907,
+    "stamina": 12,
+    "px": 11.885019747017331,
+    "pz": 24.372518730283474,
+    "yaw": -11.883559999999958,
     "inv": {
       "wood": 132,
-      "stone": 34,
-      "core": 11,
-      "berry": 11,
+      "stone": 44,
+      "core": 12,
+      "berry": 9,
       "water": 83
     },
     "lit": {
@@ -203,7 +203,14 @@
       "desert-rock-108": 1,
       "desert-tree-5": 1,
       "desert-berry-10": 1,
-      "desert-rock-3": 1
+      "desert-rock-3": 1,
+      "desert-monster-14": 1,
+      "desert-berry-3": 1,
+      "desert-rock-98": 1,
+      "desert-rock-19": 1,
+      "desert-rock-30": 1,
+      "desert-rock-50": 1,
+      "desert-rock-58": 1
     }
   }
 }
