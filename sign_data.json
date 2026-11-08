@@ -116,12 +116,12 @@
         "lastSignDate": null,
         "streak": 0,
         "signRecords": [],
-        "lastDeductionDate": "2026-11-07"
+        "lastDeductionDate": "2026-11-08"
       },
       "rewards": {
         "points": 0,
         "regular": 0,
-        "super": 86,
+        "super": 85,
         "extra_space_packs": []
       }
     },
@@ -1040,12 +1040,12 @@
         "lastSignDate": null,
         "streak": 0,
         "signRecords": [],
-        "lastDeductionDate": "2026-11-07"
+        "lastDeductionDate": "2026-11-08"
       },
       "rewards": {
         "points": 0,
         "regular": 0,
-        "super": 66,
+        "super": 65,
         "extra_space_packs": []
       },
       "daily_tasks": {},
