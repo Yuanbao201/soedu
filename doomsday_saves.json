@@ -4,16 +4,16 @@
     "phase": "playing",
     "difficulty": "easy",
     "talentId": "scavenger",
-    "day": 3,
+    "day": 4,
     "maxHp": 100,
     "hp": 100,
-    "food": 100,
-    "water": 100,
+    "food": 94,
+    "water": 94,
     "energy": 100,
-    "med": 4,
-    "mat": 10,
+    "med": 5,
+    "mat": 13,
     "tradeUsedToday": false,
-    "pendingEvent": null,
+    "pendingEvent": "acidrain",
     "pendingActionPenalty": 0,
     "actionPoints": 4,
     "logEntries": [
@@ -68,6 +68,30 @@
       {
         "text": "【事件】隐藏的补给箱：箱子碎裂，但你抢出了大部分物资：食物 +20，水 +20，材料 +2。",
         "cls": "system"
+      },
+      {
+        "text": "你找了个角落休息，体力 +20",
+        "cls": "neutral"
+      },
+      {
+        "text": "搜寻废墟：食物 +5，水 +11，材料 +1（拾荒者额外 +2 水）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +5，水 +7，药品 +1，材料 +2（拾荒者额外 +3 食物）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +10，水 +9（拾荒者额外 +2 水）",
+        "cls": "good"
+      },
+      {
+        "text": "—— 第 4 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
       }
     ]
   }
