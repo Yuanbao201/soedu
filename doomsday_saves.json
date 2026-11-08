@@ -7,13 +7,13 @@
     "day": 3,
     "maxHp": 100,
     "hp": 100,
-    "food": 88,
-    "water": 88,
+    "food": 100,
+    "water": 100,
     "energy": 100,
     "med": 4,
-    "mat": 8,
+    "mat": 10,
     "tradeUsedToday": false,
-    "pendingEvent": "cache",
+    "pendingEvent": null,
     "pendingActionPenalty": 0,
     "actionPoints": 4,
     "logEntries": [
@@ -64,6 +64,10 @@
       {
         "text": "夜间消耗：食物 -6，水 -6",
         "cls": "neutral"
+      },
+      {
+        "text": "【事件】隐藏的补给箱：箱子碎裂，但你抢出了大部分物资：食物 +20，水 +20，材料 +2。",
+        "cls": "system"
       }
     ]
   }
