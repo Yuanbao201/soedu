@@ -11,9 +11,9 @@
     "water": 94,
     "energy": 100,
     "med": 5,
-    "mat": 13,
+    "mat": 11,
     "tradeUsedToday": false,
-    "pendingEvent": "acidrain",
+    "pendingEvent": null,
     "pendingActionPenalty": 0,
     "actionPoints": 4,
     "logEntries": [
@@ -92,6 +92,10 @@
       {
         "text": "夜间消耗：食物 -6，水 -6",
         "cls": "neutral"
+      },
+      {
+        "text": "【事件】酸雨：你加固了屋顶，安然度过了这场酸雨。",
+        "cls": "system"
       }
     ]
   }
