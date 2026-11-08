@@ -1,17 +1,17 @@
 {
   "超级管理员": {
     "v": 1,
-    "phase": "playing",
+    "phase": "ended",
     "difficulty": "easy",
     "talentId": "lucky",
-    "day": 1,
+    "day": 8,
     "maxHp": 100,
     "hp": 100,
-    "food": 80,
-    "water": 80,
+    "food": 58,
+    "water": 58,
     "energy": 100,
     "med": 2,
-    "mat": 5,
+    "mat": 8,
     "tradeUsedToday": false,
     "pendingEvent": null,
     "pendingActionPenalty": 0,
@@ -28,7 +28,84 @@
       {
         "text": "你在一间废弃的安全屋里醒来。门外是死寂的城市，物资有限，你必须做出选择。",
         "cls": "neutral"
+      },
+      {
+        "text": "搜寻废墟：食物 +12，水 +10",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +9，水 +11，材料 +2",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +5，水 +9，材料 +1",
+        "cls": "good"
+      },
+      {
+        "text": "你找了个角落休息，体力 +21",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 2 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 3 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 4 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 5 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 6 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 7 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 8 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
       }
-    ]
+    ],
+    "px": 12,
+    "pz": 13.818959999999992,
+    "yaw": 0,
+    "result": "win",
+    "endDay": 7
   }
 }
