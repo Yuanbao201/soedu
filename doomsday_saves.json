@@ -4,16 +4,16 @@
     "phase": "playing",
     "difficulty": "easy",
     "talentId": "scavenger",
-    "day": 5,
+    "day": 6,
     "maxHp": 100,
     "hp": 100,
-    "food": 94,
-    "water": 94,
+    "food": 88,
+    "water": 88,
     "energy": 100,
     "med": 7,
     "mat": 19,
     "tradeUsedToday": false,
-    "pendingEvent": null,
+    "pendingEvent": "acidrain",
     "pendingActionPenalty": 0,
     "actionPoints": 4,
     "logEntries": [
@@ -115,6 +115,14 @@
       },
       {
         "text": "—— 第 5 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 6 天 ——",
         "cls": "system"
       },
       {
