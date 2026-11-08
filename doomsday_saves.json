@@ -1,14 +1,14 @@
 {
   "超级管理员": {
     "v": 1,
-    "phase": "playing",
+    "phase": "ended",
     "difficulty": "easy",
     "talentId": "scavenger",
-    "day": 6,
+    "day": 8,
     "maxHp": 100,
     "hp": 100,
-    "food": 88,
-    "water": 88,
+    "food": 76,
+    "water": 76,
     "energy": 100,
     "med": 7,
     "mat": 17,
@@ -132,7 +132,25 @@
       {
         "text": "【事件】酸雨：你加固了屋顶，安然度过了这场酸雨。",
         "cls": "system"
+      },
+      {
+        "text": "—— 第 7 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
+      },
+      {
+        "text": "—— 第 8 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
       }
-    ]
+    ],
+    "result": "win",
+    "endDay": 7
   }
 }
