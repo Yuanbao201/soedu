@@ -4,18 +4,18 @@
     "phase": "playing",
     "difficulty": "easy",
     "talentId": "scavenger",
-    "day": 1,
+    "day": 2,
     "maxHp": 100,
     "hp": 100,
-    "food": 100,
-    "water": 97,
-    "energy": 80,
-    "med": 3,
-    "mat": 8,
+    "food": 94,
+    "water": 94,
+    "energy": 100,
+    "med": 4,
+    "mat": 10,
     "tradeUsedToday": false,
-    "pendingEvent": null,
+    "pendingEvent": "acidrain",
     "pendingActionPenalty": 0,
-    "actionPoints": 2,
+    "actionPoints": 4,
     "logEntries": [
       {
         "text": "【系统】难度：简单 · 目标存活 7 天",
@@ -36,6 +36,22 @@
       {
         "text": "搜寻废墟：食物 +11，水 +12，材料 +2（拾荒者额外 +2 食物）",
         "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +6，水 +6，材料 +2（拾荒者额外 +1 水）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +10，水 +11，药品 +1（拾荒者额外 +3 水）",
+        "cls": "good"
+      },
+      {
+        "text": "—— 第 2 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
       }
     ]
   }
