@@ -4,14 +4,14 @@
     "phase": "playing",
     "difficulty": "easy",
     "talentId": "scavenger",
-    "day": 4,
+    "day": 5,
     "maxHp": 100,
     "hp": 100,
     "food": 94,
     "water": 94,
     "energy": 100,
-    "med": 5,
-    "mat": 11,
+    "med": 7,
+    "mat": 19,
     "tradeUsedToday": false,
     "pendingEvent": null,
     "pendingActionPenalty": 0,
@@ -96,6 +96,30 @@
       {
         "text": "【事件】酸雨：你加固了屋顶，安然度过了这场酸雨。",
         "cls": "system"
+      },
+      {
+        "text": "搜寻废墟：食物 +5，水 +12，药品 +1，材料 +2（拾荒者额外 +1 水）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +5，水 +5，药品 +1，材料 +2（拾荒者额外 +1 食物）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +7，水 +7，材料 +2（拾荒者额外 +3 水）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +9，水 +5，材料 +2（拾荒者额外 +2 水）",
+        "cls": "good"
+      },
+      {
+        "text": "—— 第 5 天 ——",
+        "cls": "system"
+      },
+      {
+        "text": "夜间消耗：食物 -6，水 -6",
+        "cls": "neutral"
       }
     ]
   }
