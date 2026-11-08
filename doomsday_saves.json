@@ -7,15 +7,15 @@
     "day": 1,
     "maxHp": 100,
     "hp": 100,
-    "food": 80,
-    "water": 80,
-    "energy": 100,
-    "med": 2,
-    "mat": 5,
+    "food": 100,
+    "water": 97,
+    "energy": 80,
+    "med": 3,
+    "mat": 8,
     "tradeUsedToday": false,
     "pendingEvent": null,
     "pendingActionPenalty": 0,
-    "actionPoints": 4,
+    "actionPoints": 2,
     "logEntries": [
       {
         "text": "【系统】难度：简单 · 目标存活 7 天",
@@ -28,6 +28,14 @@
       {
         "text": "你在一间废弃的安全屋里醒来。门外是死寂的城市，物资有限，你必须做出选择。",
         "cls": "neutral"
+      },
+      {
+        "text": "搜寻废墟：食物 +11，水 +5，药品 +1，材料 +1（拾荒者额外 +2 食物）",
+        "cls": "good"
+      },
+      {
+        "text": "搜寻废墟：食物 +11，水 +12，材料 +2（拾荒者额外 +2 食物）",
+        "cls": "good"
       }
     ]
   }
