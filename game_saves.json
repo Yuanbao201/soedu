@@ -28,21 +28,21 @@
   },
   "迪迪7": {
     "v": 2,
-    "day": 7,
-    "region": "oasis",
-    "hp": 88,
-    "food": 90.86266000000028,
-    "water": 89.56984399999921,
-    "stamina": 2,
-    "px": 24,
-    "pz": 24.040039999999983,
-    "yaw": 0,
+    "day": 10,
+    "region": "frost",
+    "hp": 55,
+    "food": 38.5901200000006,
+    "water": 33.6811839999987,
+    "stamina": 24,
+    "px": 22.802164435686993,
+    "pz": 34.4152610368387,
+    "yaw": 0.26701999999995457,
     "inv": {
       "wood": 58,
-      "stone": 2,
-      "core": 2,
+      "stone": 8,
+      "core": 9,
       "berry": 10,
-      "water": 0
+      "water": 5
     },
     "lit": {
       "oasis": true,
@@ -125,7 +125,17 @@
       "desert-monster-6": 1,
       "desert-monster-7": 1,
       "desert-monster-20": 1,
-      "desert-monster-12": 1
+      "desert-monster-12": 1,
+      "frost-monster-14": 1,
+      "frost-rock-51": 1,
+      "frost-monster-5": 1,
+      "frost-monster-21": 1,
+      "frost-rock-74": 1,
+      "frost-monster-17": 1,
+      "frost-monster-31": 1,
+      "frost-monster-27": 1,
+      "frost-rock-0": 1,
+      "frost-monster-12": 1
     }
   }
 }
