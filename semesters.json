@@ -1,9 +1,9 @@
 [
   {
     "id": "s7adf80da",
-    "name": "四初二上",
+    "name": "四初二上上半学期",
     "start_date": "2026-08-31",
-    "end_date": "2027-01-10",
+    "end_date": "2026-11-08",
     "owner_type": "company",
     "owner_id": "YY202509",
     "base_points": 0,
@@ -486,7 +486,7 @@
         "spent": 0
       }
     },
-    "total_weeks": 19,
+    "total_weeks": 10,
     "current_week": 10,
     "status": "进行中"
   },
