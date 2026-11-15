@@ -3220,5 +3220,11 @@
     "username": "system",
     "operation": "启动",
     "status": "成功"
+  },
+  {
+    "time": "2026-11-15 20:42:32",
+    "username": "超级管理员",
+    "operation": "访问",
+    "status": "成功"
   }
 ]
