@@ -75,12 +75,12 @@
             "timestamp": 1788784687.460728
           }
         ],
-        "lastDeductionDate": "2026-11-12"
+        "lastDeductionDate": "2026-11-15"
       },
       "rewards": {
         "points": 453777,
         "regular": 0,
-        "super": 20,
+        "super": 17,
         "extra_space_packs": []
       },
       "daily_tasks": {
@@ -116,12 +116,12 @@
         "lastSignDate": null,
         "streak": 0,
         "signRecords": [],
-        "lastDeductionDate": "2026-11-12"
+        "lastDeductionDate": "2026-11-15"
       },
       "rewards": {
         "points": 0,
         "regular": 0,
-        "super": 81,
+        "super": 78,
         "extra_space_packs": []
       }
     },
@@ -1040,12 +1040,12 @@
         "lastSignDate": null,
         "streak": 0,
         "signRecords": [],
-        "lastDeductionDate": "2026-11-12"
+        "lastDeductionDate": "2026-11-15"
       },
       "rewards": {
         "points": 0,
         "regular": 0,
-        "super": 61,
+        "super": 58,
         "extra_space_packs": []
       },
       "daily_tasks": {},
